@@ -201,6 +201,7 @@ span.required {
   top: 0;
   z-index: 10;
   width: 100%;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
 }
 
 ul.menu-links {
@@ -254,7 +255,7 @@ li.menu-element:hover {
 
 .form-container {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   width: 100%;
 }
 
@@ -270,6 +271,18 @@ li.menu-element:hover {
   height: 100%;
   object-fit: cover;
   border-radius: 0 20px 20px 0;
+}
+
+@media (max-width: 719px) {
+  .my-fridge .page-wrapper {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 639px) {
+  form {
+    border-radius: 20px;
+  }
 }
 
 @media (max-width: 25em) {
@@ -290,5 +303,12 @@ li.menu-element:hover {
   }
   h1 {
     font-size: 2rem;
+  }
+
+  .my-fridge .page-wrapper {
+    padding: 0px;
+  }
+  form {
+    border-radius: 0px;
   }
 }
