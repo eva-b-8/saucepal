@@ -3,65 +3,119 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Belleza&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Patrick+Hand&family=Quicksand:wght@300..700&display=swap"
       rel="stylesheet"
     />
 
-    <title>My first web app</title>
+    <title>Saucepal</title>
+    <link rel="icon" type="image/x-icon" href="images/saucepal-favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- MENU -->
+    <header class="menu">
+      <div class="menu-container">
+        <div class="logo-container">
+          <img
+            class="logo"
+            src="images/saucepal-logo.svg"
+            alt="saucepal logo"
+          />
+        </div>
+        <ul class="menu-links">
+          <li class="menu-element">My Fridge</li>
+          <li class="menu-element">Recipes</li>
+          <li class="menu-element">About</li>
+        </ul>
+      </div>
+    </header>
   </head>
 
   <body>
-    <div class="page-wrapper">
-      <header><h1>Varenna</h1></header>
-      <main>
+    <!-- HERO BANNER -->
+    <!--Image source: https://www.pexels.com/photo/assorted-fruits-and-vegetables-on-a-marble-top-8939514/-->
+    <section class="hero-banner">
+      <div class="hero-content">
+        <h1>
+          Making meals <span class="handwritten">easier</span>, <br />
+          one ingredient at a time
+        </h1>
         <p class="description">
-          <a href="https://simple.wikipedia.org/wiki/Varenna" target="_blank"
-            >Varenna</a
-          ><i> (Comasco, Lecchese: Varena)</i> is a comune on Lake Como in the
-          Province of Lecco in the Lombardy region in Italy. It is about 60
-          kilometres (37 mi) north of Milan and about 20 kilometres (12 mi)
-          northwest of Lecco.
+          Tell us what you have in your fridge and we will offer you recipes
+          based on what you already have. Alternatively, browse our recipes for
+          inspiration.
         </p>
-        <br />
-        <div class="grid-container">
-          <div class="photo-container">
-            <p title="Click on the link below the photo to see the location">
-              A beautiful sunset in Varenna
-            </p>
-            <img class="hero-image" src="sunset.jpeg" alt="Sunset in Varenna" />
-          </div>
-          <div class="photo-container">
-            <p title="Click on the link below the photo to see the location">
-              Golden hour
-            </p>
-            <img
-              class="hero-image"
-              src="buildings.jpeg"
-              alt="Golden hour buildings in Varenna"
+        <div class="button-container">
+          <a class="primary-button" href="#my-fridge">Add your ingredients</a>
+          <a
+            class="secondary-button"
+            href="https://youtu.be/dQw4w9WgXcQ?si=JjKWwc1chNcczQUa"
+            target="_blank"
+            >Browse recipes</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="my-fridge" id="my-fridge">
+      <div class="page-wrapper">
+        <div class="form-container">
+          <form id="add-form">
+            <div class="form-intro">
+              <h2>Let us know what you have in your fridge</h2>
+              <p>We will try to match your ingredients with recipes.</p>
+            </div>
+            <label for="ingredient"
+              >Ingredient name
+              <span class="required"><i>(Required)</i></span></label
+            >
+            <input
+              type="text"
+              id="ingredient"
+              name="ingredient"
+              placeholder="e.g. Tomatoes"
+              required
             />
-          </div>
-          <div class="photo-container">
-            <p title="Click on the link below the photo to see the location">
-              A view from a walk
-            </p>
-            <img class="hero-image" src="sea.jpeg" alt="Path near the sea" />
-          </div>
-          <div class="photo-container">
-            <p title="Click on the link below the photo to see the location">
-              A view from above
-            </p>
-            <img class="hero-image" src="landscape.jpeg" alt="Landscape view" />
+
+            <label for="quantity">Quantity (kg)</label>
+            <input
+              type="number"
+              id="quantity"
+              name="quantity"
+              min="0"
+              max="50"
+              step="0.1"
+              placeholder="0.5"
+            />
+
+            <label for="category">Category</label>
+            <select id="category" name="category">
+              <option value="">Choose one</option>
+              <option value="fruit-veg">Fruit &amp; veg</option>
+              <option value="meat-fish">Meat &amp; fish</option>
+              <option value="dairy">Dairy &amp; eggs</option>
+              <option value="cupboard">Store cupboard</option>
+              <option value="frozen">Frozen</option>
+              <option value="other">Other</option>
+            </select>
+
+            <label for="barcode">Barcode</label>
+            <input
+              type="text"
+              id="barcode"
+              name="barcode"
+              inputmode="numeric"
+              pattern="\d{8}|\d{13}"
+              placeholder="8 or 13 digits"
+            />
+            <button type="submit" class="primary-button">Add to fridge</button>
+          </form>
+          <!--Image source: https://www.pexels.com/photo/fruits-and-vegetable-in-the-fridge-4443433/-->
+          <div class="media">
+            <img src="images/form-image.jpg" alt="Fridge with healthy food" />
           </div>
         </div>
-        <a
-          class="primary-button"
-          href="https://maps.app.goo.gl/7vm2WXitm5WmvxuG9"
-          target="_blank"
-          >Photo location</a
-        >
-      </main>
-    </div>
+      </div>
+    </section>
   </body>
 </html>
