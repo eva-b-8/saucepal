@@ -43,10 +43,11 @@ h4 {
 
 label {
   display: block;
-  margin-block-end: 0.35rem;
+  margin-bottom: 0.35rem;
   font-size: 0.9rem;
   font-weight: 600;
   color: var(--label-text);
+  margin-top: 1.5rem;
 }
 
 input,
@@ -61,7 +62,11 @@ textarea {
   background: var(--field-bg);
   border: 1px solid var(--field-border);
   border-radius: 8px;
-  margin-block-end: 1.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.input-error {
+  border: 2px solid var(--error);
 }
 
 body {
@@ -97,6 +102,12 @@ form input {
   display: block;
   width: 100%;
   box-sizing: border-box;
+}
+
+.form-error {
+  color: var(--error);
+  display: none;
+  font-size: 0.875rem;
 }
 
 .page-wrapper {
