@@ -42,3 +42,37 @@ form.addEventListener("submit", (event) => {
     classes.toggle("input-error");
   }
 });
+
+document.addEventListener("DOMContentLoaded", () => {
+  const dayElement = document.getElementById("day-of-week");
+  if (dayElement) {
+    dayElement.textContent = new Date().toLocaleDateString("en-GB", {
+      weekday: "long",
+    });
+  }
+});
+
+function myMove() {
+  const elem = document.getElementById("animate");
+  const box = elem.parentNode;
+
+  const startX = 0;
+  const startY = box.clientHeight - elem.offsetHeight;
+  const endX = (box.clientWidth - elem.offsetWidth) / 2;
+  const endY = (box.clientHeight - elem.offsetHeight) / 2;
+
+  const totalSteps = 300;
+  let step = 0;
+  elem.style.display = "block";
+  const id = setInterval(frame, 5);
+
+  function frame() {
+    step++;
+    const progress = step / totalSteps;
+    elem.style.left = startX + (endX - startX) * progress + "px";
+    elem.style.top = startY + (endY - startY) * progress + "px";
+    if (step >= totalSteps) {
+      clearInterval(id);
+    }
+  }
+}

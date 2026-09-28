@@ -62,7 +62,9 @@
         <div class="form-container">
           <form id="add-form">
             <div class="form-intro">
-              <h2>Let us know what you have in your fridge</h2>
+              <h2>Happy <span id="day-of-week">weekday</span>!</h2>
+              <br />
+              <h3>Let us know what you have in your fridge.</h3>
               <p>We will try to match your ingredients with recipes.</p>
             </div>
             <label for="ingredient"
@@ -74,7 +76,6 @@
               id="ingredient"
               name="ingredient"
               placeholder="e.g. Tomatoes"
-              required
             />
             <div class="form-error" id="ingredientError"></div>
 
@@ -109,11 +110,13 @@
             />
             <div class="form-error" id="barcodeError"></div>
             <br />
-            <button type="submit" class="primary-button">Add to fridge</button>
+            <button type="submit" class="primary-button" onclick="myMove()">
+              Add to fridge
+            </button>
           </form>
           <!--Image source: https://www.pexels.com/photo/fruits-and-vegetable-in-the-fridge-4443433/-->
-          <div class="media">
-            <img src="images/form-image.jpg" alt="Fridge with healthy food" />
+          <div class="media" id="media">
+            <img src="images/pepper.png" id="animate" />
           </div>
         </div>
       </div>
