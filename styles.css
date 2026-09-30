@@ -83,6 +83,10 @@ textarea {
   max-width: 350px;
 }
 
+.fridge-svg {
+  margin: 0 auto;
+}
+
 #fridge-count {
   margin-top: 1.5rem;
 }
