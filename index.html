@@ -1,3 +1,4 @@
+<!doctype html>
 <html lang="en">
   <head>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -11,27 +12,31 @@
     <link rel="icon" type="image/x-icon" href="images/saucepal-favicon.png" />
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
 
+  <body>
     <!-- MENU -->
     <header class="menu">
       <div class="menu-container">
-        <div class="logo-container">
+        <a class="logo-container" href="index.html">
           <img
             class="logo"
             src="images/saucepal-logo.svg"
-            alt="saucepal logo"
+            alt="Saucepal home"
           />
-        </div>
+        </a>
         <ul class="menu-links">
-          <li class="menu-element">My Fridge</li>
+          <li class="menu-element active">
+            <a href="index.html" aria-current="page">Home</a>
+          </li>
+          <li class="menu-element menu-link">
+            <a href="fridge.html">My Fridge</a>
+          </li>
           <li class="menu-element">Recipes</li>
           <li class="menu-element">About</li>
         </ul>
       </div>
     </header>
-  </head>
-
-  <body>
     <!-- HERO BANNER -->
     <!--Image source: https://www.pexels.com/photo/assorted-fruits-and-vegetables-on-a-marble-top-8939514/-->
     <section class="hero-banner">
@@ -53,71 +58,6 @@
             target="_blank"
             >Browse recipes</a
           >
-        </div>
-      </div>
-    </section>
-
-    <section class="my-fridge" id="my-fridge">
-      <div class="page-wrapper">
-        <div class="form-container">
-          <form id="add-form">
-            <div class="form-intro">
-              <h2>Happy <span id="day-of-week">weekday</span>!</h2>
-              <br />
-              <h3>Let us know what you have in your fridge.</h3>
-              <p>We will try to match your ingredients with recipes.</p>
-            </div>
-            <label for="ingredient"
-              >Ingredient name
-              <span class="required"><i>(Required)</i></span></label
-            >
-            <input
-              type="text"
-              id="ingredient"
-              name="ingredient"
-              placeholder="e.g. Tomatoes"
-            />
-            <div class="form-error" id="ingredientError"></div>
-
-            <label for="quantity">Quantity (kg)</label>
-            <input
-              type="number"
-              id="quantity"
-              name="quantity"
-              step="0.1"
-              placeholder="0.5"
-            />
-            <div class="form-error" id="quantityError"></div>
-
-            <label for="category">Category</label>
-            <select id="category" name="category">
-              <option value="">Choose one</option>
-              <option value="fruit-veg">Fruit &amp; veg</option>
-              <option value="meat-fish">Meat &amp; fish</option>
-              <option value="dairy">Dairy &amp; eggs</option>
-              <option value="cupboard">Store cupboard</option>
-              <option value="frozen">Frozen</option>
-              <option value="other">Other</option>
-            </select>
-
-            <label for="barcode">Barcode</label>
-            <input
-              type="text"
-              id="barcode"
-              name="barcode"
-              inputmode="numeric"
-              placeholder="8 or 13 digits"
-            />
-            <div class="form-error" id="barcodeError"></div>
-            <br />
-            <button type="submit" class="primary-button" onclick="myMove()">
-              Add to fridge
-            </button>
-          </form>
-          <!--Image source: https://www.pexels.com/photo/fruits-and-vegetable-in-the-fridge-4443433/-->
-          <div class="media" id="media">
-            <img src="images/pepper.png" id="animate" />
-          </div>
         </div>
       </div>
     </section>
