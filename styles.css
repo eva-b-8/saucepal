@@ -16,11 +16,11 @@
   --off-black: #3f120b;
   --light-gray: #dbdbdb;
   --field-bg: #fff;
-  --field-border: #b8b2a8;
+  --field-border: var(--light-gray);
   --field-border-focus: #2b6cb0;
   --field-text: #1a1a1a;
   --label-text: var(--off-black);
-  --error: #a02118;
+  --error: #a22416;
   --icon-bg: var(--primary-lightest-color);
   --icon-color: var(--primary-darker-color);
 }
@@ -76,7 +76,7 @@ textarea {
 .form-intro-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  padding: 60px 20px;
+  padding: 60px 0 20px 0;
 }
 
 .fridge-svg img {
@@ -89,6 +89,22 @@ textarea {
 
 #fridge-count {
   margin-top: 1.5rem;
+}
+
+.fridge-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+}
+
+.fridge-header #fridge-count {
+  margin-top: 0;
+}
+
+.fridge-header .secondary-button {
+  padding: 8px 20px;
+  font-size: 1rem;
 }
 
 body {
@@ -132,6 +148,28 @@ form input {
   font-size: 0.875rem;
 }
 
+.page-header-dark {
+  background-color: var(--primary-darker-color);
+}
+
+.page-header-dark .page-wrapper {
+  padding-bottom: 40px;
+}
+
+.fridge-element .page-wrapper {
+  padding-top: 20px;
+}
+
+.page-header-dark h1,
+.page-header-dark h2,
+.page-header-dark p {
+  color: white;
+}
+
+.page-header-dark span {
+  color: var(--primary-lighter-color);
+}
+
 .page-wrapper {
   padding: 100px;
   width: 80%;
@@ -158,6 +196,31 @@ a:hover {
   max-width: 600px;
   grid-gap: 12px;
   margin: 36px 0 0 0;
+}
+
+.error-button {
+  display: inline-block;
+  text-decoration: none;
+  font-weight: 600;
+  font-style: normal;
+  text-align: center;
+  padding: 8px 20px;
+  background-color: var(--white);
+  border-radius: 12px;
+  font-size: 1rem;
+  color: var(--error);
+  border: 1.5px solid var(--error);
+  transition: 0.6s ease;
+}
+
+.error-button:hover {
+  background-color: var(--error);
+  color: var(--white);
+  cursor: pointer;
+}
+
+.error-button:focus-visible {
+  outline: 3px solid var(--field-border-focus);
 }
 
 .primary-button {
@@ -261,6 +324,7 @@ li.menu-element {
   transition: all 0.6s ease;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 li.menu-element:hover,
@@ -328,19 +392,19 @@ li.menu-element.active {
   border-radius: 0 20px 20px 0;
 }
 
-@media (max-width: 719px) {
-  .my-fridge .page-wrapper {
-    padding: 20px;
+@media (max-width: 65.5em) {
+  .page-wrapper {
+    padding: 60px 20px;
   }
 }
 
-@media (max-width: 1167px) {
+@media (max-width: 73em) {
   .fridge-svg {
     display: none;
   }
 }
 
-@media (max-width: 639px) {
+@media (max-width: 40em) {
   form {
     border-radius: 20px;
   }
@@ -350,10 +414,6 @@ li.menu-element.active {
   .page-wrapper {
     padding: 30px;
     width: 100%;
-  }
-
-  .form-intro-container {
-    padding: 80px 0 0 0;
   }
 
   .hero-banner {
@@ -443,11 +503,12 @@ li.menu-element a {
 
 .quick-add {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   column-gap: 12px;
   align-items: start;
   padding: 24px;
   border-radius: 20px;
+  grid-gap: 12px;
 }
 
 .quick-add .field {
@@ -515,6 +576,28 @@ li.menu-element a {
   margin-bottom: 1rem;
 }
 
+.item-icon {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 0;
+  flex-shrink: 0;
+}
+
+.item-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.item-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.shelf li {
+  align-items: center;
+}
+
 .fridge-list {
   list-style: none;
   display: grid;
@@ -574,4 +657,74 @@ li.menu-element a {
   .fridge-page .page-wrapper {
     padding: 90px 20px 30px;
   }
+}
+
+.quantity-field {
+  display: flex;
+  border: 1px solid var(--field-border);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: 0.6s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus,
+.quantity-field:focus-within {
+  border-color: var(--field-border-focus);
+  outline: 1.5px solid var(--field-border-focus);
+}
+
+.quantity-field select:hover {
+  background-color: var(--primary-lightest-color);
+}
+
+.quantity-field input[type="number"],
+.quantity-field select {
+  border: none;
+  border-radius: 0;
+  margin: 0;
+  box-shadow: none;
+  background-color: transparent;
+  font: inherit;
+  transition: 0.6s ease;
+}
+
+.quantity-field input[type="number"] {
+  flex: 1;
+  width: auto;
+  min-width: 0;
+}
+
+.quantity-field select {
+  flex: 0 0 auto;
+  width: auto;
+  border-left: 1px solid var(--field-border);
+  cursor: pointer;
+}
+
+.quantity-field input[type="number"]:focus,
+.quantity-field select:focus {
+  outline: none;
+}
+
+#category {
+  cursor: pointer;
+}
+
+.field > input,
+.field > select,
+.quantity-field {
+  height: 3.125rem;
+}
+
+.quantity-field input[type="number"],
+.quantity-field select {
+  height: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.shelf h2 {
+  margin-bottom: 0.75rem;
 }

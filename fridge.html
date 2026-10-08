@@ -37,96 +37,117 @@
       </div>
     </header>
 
-    <main class="page-wrapper">
-      <div class="form-intro-container">
-        <div class="form-intro">
-          <h1>
-            Happy
-            <span class="handwritten"
-              ><span id="day-of-week">weekday</span></span
-            >!
-          </h1>
-          <br />
-          <h2>Let us know what you have in your fridge.</h2>
-          <p>We will try to match your ingredients with recipes.</p>
-        </div>
-        <div class="fridge-svg">
-          <!--Image source: https://undraw.co/search/food-->
-          <img src="images/fridge.svg" alt="English breakfast" />
+    <main>
+      <div class="page-header-dark">
+        <div class="page-wrapper">
+          <div class="form-intro-container">
+            <div class="form-intro">
+              <h1>
+                Happy
+                <span class="handwritten"
+                  ><span id="day-of-week">weekday</span></span
+                >!
+              </h1>
+              <br />
+              <h2>Let us know what you have in your fridge.</h2>
+              <p>We will try to match your ingredients with recipes.</p>
+            </div>
+            <div class="fridge-svg">
+              <!--Image source: https://undraw.co/search/food-->
+              <img src="images/fridge.svg" alt="English breakfast" />
+            </div>
+          </div>
+          <form id="add-form" class="quick-add" novalidate>
+            <div class="field">
+              <label for="ingredient">
+                Ingredient name <span class="required"><i>(Required)</i></span>
+              </label>
+              <input
+                type="text"
+                id="ingredient"
+                name="ingredient"
+                placeholder="e.g. tomatoes"
+              />
+              <div class="form-error" id="ingredientError"></div>
+            </div>
+
+            <div class="field">
+              <label for="quantity">Quantity</label>
+              <div class="quantity-field">
+                <input
+                  type="number"
+                  id="quantity"
+                  name="quantity"
+                  step="0.1"
+                  min="0"
+                  placeholder="0"
+                />
+                <select id="unit" name="unit" aria-label="Unit">
+                  <option value="kg">kg</option>
+                  <option value="g">g</option>
+                  <option value="units">units</option>
+                </select>
+              </div>
+              <div class="form-error" id="quantityError"></div>
+            </div>
+
+            <div class="field">
+              <label for="category">Category</label>
+              <select id="category" name="category">
+                <option value="Other">Choose one</option>
+                <option value="Fruit & veg">Fruit &amp; veg</option>
+                <option value="Meat & fish">Meat &amp; fish</option>
+                <option value="Dairy & eggs">Dairy &amp; eggs</option>
+                <option value="Store cupboard">Store cupboard</option>
+                <option value="Frozen">Frozen</option>
+                <option value="Other">Other</option>
+              </select>
+              <div class="form-error"></div>
+            </div>
+
+            <button type="submit" class="primary-button">Add to fridge</button>
+          </form>
         </div>
       </div>
-      <form id="add-form" class="quick-add">
-        <div class="field">
-          <label for="ingredient">
-            Ingredient name <span class="required"><i>(Required)</i></span>
-          </label>
-          <input
-            type="text"
-            id="ingredient"
-            name="ingredient"
-            placeholder="Tomatoes"
-          />
-          <div class="form-error" id="ingredientError"></div>
+      <div class="fridge-element">
+        <div class="page-wrapper">
+          <div class="fridge-header">
+            <h3 id="fridge-count"></h3>
+            <button type="button" id="remove-all" class="error-button" hidden>
+              Remove all
+            </button>
+          </div>
+          <div class="fridge-empty" id="fridge-empty" hidden>
+            <div class="icon-with-background">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="32"
+                height="32"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z"
+                />
+                <path d="M5 10h14" />
+                <path d="M15 7v6" />
+              </svg>
+            </div>
+            <h4>Your fridge is empty</h4>
+            <p>Add your first ingredient above.</p>
+          </div>
+          <div id="fridge-list"></div>
         </div>
-
-        <div class="field">
-          <label for="quantity">Quantity (kg)</label>
-          <input
-            type="number"
-            id="quantity"
-            name="quantity"
-            step="0.1"
-            placeholder="0.5"
-          />
-          <div class="form-error" id="quantityError"></div>
-        </div>
-
-        <div class="field">
-          <label for="category">Category</label>
-          <select id="category" name="category">
-            <option value="Other">Choose one</option>
-            <option value="Fruit & veg">Fruit &amp; veg</option>
-            <option value="Meat & fish">Meat &amp; fish</option>
-            <option value="Dairy & eggs">Dairy &amp; eggs</option>
-            <option value="Store cupboard">Store cupboard</option>
-            <option value="Frozen">Frozen</option>
-            <option value="Other">Other</option>
-          </select>
-          <div class="form-error"></div>
-        </div>
-
-        <button type="submit" class="primary-button">Add to fridge</button>
-      </form>
-      <h3 id="fridge-count"></h3>
-      <div class="fridge-empty" id="fridge-empty" hidden>
-        <div class="icon-with-background">
-          <svg
-            viewBox="0 0 24 24"
-            width="32"
-            height="32"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.75"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <rect x="5" y="2" width="14" height="20" rx="2" />
-            <line x1="5" y1="10" x2="19" y2="10" />
-            <line x1="8" y1="5" x2="8" y2="7" />
-            <line x1="8" y1="13" x2="8" y2="16" />
-          </svg>
-        </div>
-        <h4>Your fridge is empty</h4>
-        <p>Add your first ingredient above.</p>
       </div>
-      <div id="fridge-list"></div>
     </main>
-
-    <!--Fridge image source: https://www.pexels.com/photo/fruits-and-vegetable-in-the-fridge-4443433/-->
-    <!--Pepper image source: https://share.google/dY9jzjSII77aH9lkl-->
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="app.js"></script>
   </body>
 </html>
