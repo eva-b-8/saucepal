@@ -35,6 +35,10 @@
   --icon-color: #f9d1af;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 html {
   scroll-behavior: smooth;
 }
