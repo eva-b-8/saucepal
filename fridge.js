@@ -165,6 +165,15 @@ function showFridge() {
 
       let li = $("<li>").append($info)[0];
 
+      let searchButton = document.createElement("button");
+      searchButton.textContent = "Search Recipes";
+      searchButton.className = "secondary-button";
+      searchButton.addEventListener("click", () => {
+        window.location.href = `recipes.html?ingredient=${item.ingredient}`;
+      });
+
+      li.appendChild(searchButton);
+
       let removeButton = document.createElement("button");
       removeButton.textContent = "Remove";
       removeButton.className = "secondary-button";
@@ -176,6 +185,7 @@ function showFridge() {
       });
 
       li.appendChild(removeButton);
+
       shelf.querySelector("ul").appendChild(li);
     });
 

@@ -732,3 +732,18 @@ textarea:focus,
 .shelf h2 {
   margin-bottom: 0.75rem;
 }
+
+.meal-image {
+  width: 100%;
+  max-width: 200px;
+}
+
+#clear-search {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.meal-search {
+  position: relative;
+}
