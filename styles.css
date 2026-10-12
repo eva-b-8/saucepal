@@ -41,6 +41,8 @@
 
 html {
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scroll-padding-top: 5rem;
 }
 
 h1,
@@ -297,29 +299,28 @@ span.required {
   color: var(--error);
 }
 
+.menu {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
 .menu-container {
   display: flex;
   align-items: stretch;
   justify-content: space-between;
-  margin: 0 auto;
   background-color: var(--white);
-  position: fixed;
-  top: 0;
-  z-index: 10;
-  width: 100%;
   box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
 }
 
-ul.menu-links {
-  align-items: center;
+.menu-links {
+  align-items: stretch;
   display: flex;
   flex-wrap: nowrap;
   list-style-type: none;
 }
 
-/* https://www.w3schools.com/howto/howto_js_active_element.asp */
-
-li.menu-element {
+.menu-element a {
   font-weight: 700;
   font-size: 1rem;
   padding: 16px 24px;
@@ -329,11 +330,13 @@ li.menu-element {
   display: flex;
   align-items: center;
   cursor: pointer;
+  text-decoration: none;
 }
 
-li.menu-element:hover,
-li.menu-element.active {
-  background-color: Var(--primary-color);
+.menu-element a:hover,
+.menu-element a:focus-visible,
+.menu-element.active a {
+  background-color: var(--primary-color);
   color: var(--white);
 }
 
@@ -343,6 +346,7 @@ li.menu-element.active {
 
 .logo {
   width: 150px;
+  height: 40px;
 }
 
 .hero-banner {
@@ -460,11 +464,6 @@ li.menu-link {
 
 .menu-link a[aria-current="page"] {
   box-shadow: inset 0 -3px 0 var(--primary-color);
-}
-
-li.menu-element a {
-  color: inherit;
-  text-decoration: none;
 }
 
 .menu-link a:focus-visible,

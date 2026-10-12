@@ -51,7 +51,7 @@ $(document).ready(function () {
 
         ingredients.forEach(
           ({ ingredient, measure }) =>
-            (ingredientHtml += `<p>${measure} of ${ingredient}</p>`),
+            (ingredientHtml += `<p>${measure.toLowerCase()} of ${ingredient.toLowerCase()}</p>`),
         );
 
         items.push(
