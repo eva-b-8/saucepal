@@ -18,12 +18,14 @@ $(document).ready(function () {
         console.log(val);
 
         items.push(
-          "<li class='meal' id='" +
+          `<a href="meal.html?id=${idMeal}">` +
+            "<li class='meal' id='" +
             key +
             "'>" +
             `<img class="meal-image" src="${strMealThumb}"></img>` +
             `${strMeal} (${strArea} food)` +
-            "</li>",
+            "</li>" +
+            "</a>",
         );
       });
 

@@ -1,3 +1,21 @@
+function mapIngredients(meal) {
+  const items = [];
+
+  for (let i = 1; i <= 20; i++) {
+    const ingredient = meal[`strIngredient${i}`];
+    const measure = meal[`strMeasure${i}`];
+
+    if (ingredient && ingredient.trim() !== "") {
+      items.push({
+        ingredient: ingredient.trim(),
+        measure: measure ? measure.trim() : "",
+      });
+    }
+  }
+
+  return items;
+}
+
 $(document).ready(function () {
   const url = window.location.search;
   const params = new URLSearchParams(url);
@@ -26,12 +44,23 @@ $(document).ready(function () {
 
         const youtubeVideoId = strYoutube.split("=")[1];
 
+        const ingredients = mapIngredients(val);
+        console.log(ingredients);
+
+        let ingredientHtml = "";
+
+        ingredients.forEach(
+          ({ ingredient, measure }) =>
+            (ingredientHtml += `<p>${measure} of ${ingredient}</p>`),
+        );
+
         items.push(
           "<li class='meal' id='" +
             key +
             "'>" +
             `<img class="meal-image" src="${strMealThumb}"></img>` +
             `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeVideoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` +
+            ingredientHtml +
             `${strMeal} (${strArea} food)` +
             `<p>${strInstructions}</p>` +
             "</li>",
