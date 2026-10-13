@@ -44,6 +44,12 @@
     <main>
       <div class="page-header-dark">
         <div class="page-wrapper">
+          <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li><span aria-current="page">My Fridge</span></li>
+            </ol>
+          </nav>
           <div class="form-intro-container">
             <div class="form-intro">
               <h1>
@@ -121,7 +127,7 @@
               Remove all
             </button>
           </div>
-          <div class="fridge-empty" id="fridge-empty" hidden>
+          <div class="empty-state" id="empty-state" hidden>
             <div class="icon-with-background">
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -126,7 +126,7 @@ function showFridge() {
     count.textContent = fridge.length + " items in your fridge";
   }
 
-  let empty = document.getElementById("fridge-empty");
+  let empty = document.getElementById("empty-state");
   empty.hidden = fridge.length > 0;
   $("#remove-all").prop("hidden", fridge.length === 0);
   if (fridge.length === 0) return;
@@ -165,18 +165,19 @@ function showFridge() {
 
       let li = $("<li>").append($info)[0];
 
+      let actions = document.createElement("div");
+      actions.className = "item-actions";
+
       let searchButton = document.createElement("button");
-      searchButton.textContent = "Search Recipes";
+      searchButton.textContent = "Search recipes";
       searchButton.className = "secondary-button";
       searchButton.addEventListener("click", () => {
-        window.location.href = `recipes.html?ingredient=${item.ingredient}`;
+        window.location.href = `recipes.html?ingredient=${encodeURIComponent(item.ingredient)}`;
       });
-
-      li.appendChild(searchButton);
 
       let removeButton = document.createElement("button");
       removeButton.textContent = "Remove";
-      removeButton.className = "secondary-button";
+      removeButton.className = "error-button";
       removeButton.addEventListener("click", () => {
         fridge.splice(fridge.indexOf(item), 1);
         localStorage.setItem("fridge", JSON.stringify(fridge));
@@ -184,7 +185,8 @@ function showFridge() {
         showToast("Removed from fridge");
       });
 
-      li.appendChild(removeButton);
+      actions.append(searchButton, removeButton);
+      li.appendChild(actions);
 
       shelf.querySelector("ul").appendChild(li);
     });

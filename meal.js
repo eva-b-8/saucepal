@@ -41,8 +41,13 @@ $(document).ready(function () {
           strYoutube,
         } = val;
         console.log(val);
+        $("#meal-name").text(strMeal);
 
-        const youtubeVideoId = strYoutube.split("=")[1];
+        const youtubeVideoId = strYoutube ? strYoutube.split("=")[1] : "";
+
+        const videoHtml = youtubeVideoId
+          ? `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeVideoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>`
+          : "";
 
         const ingredients = mapIngredients(val);
         console.log(ingredients);
@@ -51,23 +56,28 @@ $(document).ready(function () {
 
         ingredients.forEach(
           ({ ingredient, measure }) =>
-            (ingredientHtml += `<p>${measure.toLowerCase()} of ${ingredient.toLowerCase()}</p>`),
+            (ingredientHtml += `
+                <div>
+                <img src="https://www.themealdb.com/images/ingredients/${ingredient}.png"/>
+                <p>${measure.toLowerCase()} of ${ingredient.toLowerCase()}</p>
+                </div>
+                `),
         );
 
         items.push(
-          "<li class='meal' id='" +
-            key +
-            "'>" +
-            `<img class="meal-image" src="${strMealThumb}"></img>` +
-            `<iframe width="560" height="315" src="https://www.youtube.com/embed/${youtubeVideoId}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>` +
-            ingredientHtml +
-            `${strMeal} (${strArea} food)` +
-            `<p>${strInstructions}</p>` +
-            "</li>",
+          `
+            <div class="meal" id="${key}">
+                <img class="meal-image" src="${strMealThumb}"/>
+                ${ingredientHtml}
+                ${strMeal} (${strArea} food)
+                <p>${strInstructions}</p>
+                ${videoHtml}
+            </div>
+            `,
         );
       });
 
-      $("<ul/>", {
+      $("<div/>", {
         class: "my-new-list",
         html: items.join(""),
       }).appendTo("body");
