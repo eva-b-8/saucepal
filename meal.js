@@ -57,7 +57,7 @@ $(document).ready(function () {
         ingredients.forEach(
           ({ ingredient, measure }) =>
             (ingredientHtml += `
-                <div>
+                <div class="recipe-ingredients">
                 <img src="https://www.themealdb.com/images/ingredients/${ingredient}.png"/>
                 <p>${measure.toLowerCase()} of ${ingredient.toLowerCase()}</p>
                 </div>

@@ -46,14 +46,14 @@
           </nav>
           <div class="form-intro-container">
             <div class="form-intro">
-              <h1>Hungry?</h1>
+              <h1>Try something <span class="handwritten">delicious</span>!</h1>
               <br />
-              <h2>Let us know what you have in your fridge.</h2>
-              <p>We will try to match your ingredients with recipes.</p>
+              <h2>Search for meals and ingredients.</h2>
+              <p>You can also start by browsing the categories below.</p>
             </div>
-            <div class="fridge-svg">
+            <div class="header-svg">
               <!--Image source: https://undraw.co/search/food-->
-              <img src="images/fridge.svg" alt="English breakfast" />
+              <img src="images/cooking.svg" alt="English breakfast" />
             </div>
           </div>
           <form id="search-form" class="search-box">
@@ -64,11 +64,11 @@
                 name="meal"
                 placeholder="e.g. Spaghetti Bolognese"
               />
-              <span id="clear-search">
+              <button type="button" id="clear-search" aria-label="Clear search">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="18"
+                  height="18"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
@@ -80,7 +80,7 @@
                   <path d="M18 6 6 18" />
                   <path d="m6 6 12 12" />
                 </svg>
-              </span>
+              </button>
             </div>
             <button type="submit" class="primary-button">Search</button>
           </form>
@@ -100,17 +100,20 @@
             stroke-linejoin="round"
             aria-hidden="true"
           >
+            <path d="M2 12h20" />
+            <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" />
+            <path d="m4 8 16-4" />
             <path
-              d="M5 6a4 4 0 0 1 4-4h6a4 4 0 0 1 4 4v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6Z"
+              d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8"
             />
-            <path d="M5 10h14" />
-            <path d="M15 7v6" />
           </svg>
         </div>
         <h4>No matching recipes</h4>
         <p>Please search for a meal above.</p>
       </div>
     </main>
+
+    <div class="category-wrapper"></div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="recipes.js"></script>

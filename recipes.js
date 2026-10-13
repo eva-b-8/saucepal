@@ -33,8 +33,9 @@ function searchByIngredientName(ingredient) {
           `
             <a href="meal.html?id=${idMeal}">
                 <div class="meal" id="${key}">
-                    <img class="meal-image" src="${strMealThumb}"/>
-                    ${strMeal}
+                <div class="meal-image">
+                    <img src="${strMealThumb}"/></div>
+                    <h3>${strMeal}</h3>
                 </div>
             </a>
             `,
@@ -44,7 +45,7 @@ function searchByIngredientName(ingredient) {
       $("<div/>", {
         class: "my-new-list",
         html: items.join(""),
-      }).appendTo("body");
+      }).appendTo(".category-wrapper");
 
       $("#text-search").val(ingredient);
       $("#category-list").empty();
@@ -74,12 +75,14 @@ $(document).ready(function () {
 
         items.push(
           `
-            <a href="recipes.html?ingredient=${strCategory}">
-                <div class="category-card">
-                    <img src="${strCategoryThumb}"/>
-                    <h3>${strCategory}</h3>
-                </div>
-            </a>
+  <a href="recipes.html?ingredient=${strCategory}">
+    <div class="category-card">
+      <div class="category-image">
+        <img src="${strCategoryThumb}" />
+      </div>
+      <h3>${strCategory}</h3>
+    </div>
+  </a>
             `,
         );
       });
@@ -88,7 +91,7 @@ $(document).ready(function () {
         id: "category-list",
         class: "category-list",
         html: items.join(""),
-      }).appendTo("body");
+      }).appendTo(".category-wrapper");
     },
   );
 });
@@ -108,7 +111,7 @@ function resetEmptyState() {
 // handles clear search
 
 $("#clear-search").click(function () {
-  $("#text-search").val("");
+  $("#text-search").val("").focus();
 });
 
 // handles searching for search terms
