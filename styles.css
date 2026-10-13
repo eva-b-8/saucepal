@@ -13,6 +13,8 @@
   --primary-darker-color: #762918;
   --primary-lighter-color: #f9d1af;
   --primary-lightest-color: #fcead8;
+  --primary-gray: #ede3e0;
+  --primary-lightest-gray: #f4efee;
   --off-black: #3f120b;
   --light-gray: #dbdbdb;
   --field-bg: #fff;
@@ -159,7 +161,7 @@ form input {
 }
 
 .page-header-light {
-  background-color: var(--primary-lighter-color);
+  background-color: var(--primary-lightest-gray);
 }
 
 .page-header-dark .page-wrapper,
@@ -414,6 +416,7 @@ span.required {
 
 .breadcrumb {
   padding: 0 0.5rem;
+  font-size: 0.875rem;
 }
 
 .breadcrumb ol {
@@ -444,6 +447,47 @@ span.required {
 
 .breadcrumb a:hover {
   color: var(--primary-darker-color);
+}
+
+.category-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  width: 80%;
+  margin: 0 auto;
+  grid-gap: 20px;
+  padding-top: 40px;
+}
+
+.category-list a {
+  text-decoration: none;
+}
+
+.category-card {
+  background-color: var(--white);
+  border-radius: 20px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.category-card img {
+  max-width: 100%;
+  max-height: 100%;
+  border-radius: 20px 20px 0 0;
+  width: 100%;
+  display: block;
+  transition: 0.6s ease;
+  transform: scale(1);
+  background-color: var(--primary-lightest-gray);
+}
+
+.category-card:hover img {
+  transform: scale(1.05);
+}
+
+.category-card h3 {
+  color: var(--off-black);
+  padding: 12px;
+  background-color: white;
 }
 
 .page-header-dark .breadcrumb a {
@@ -590,6 +634,7 @@ li.menu-link {
   padding: 24px;
   border-radius: 20px;
   grid-gap: 12px;
+  background-color: var(--white);
 }
 
 .search-box .primary-button {
