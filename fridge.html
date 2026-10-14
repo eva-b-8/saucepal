@@ -9,6 +9,7 @@
     />
     <title>My Fridge – Saucepal</title>
     <link rel="icon" type="image/x-icon" href="images/saucepal-favicon.png" />
+    <script src="shared.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
@@ -20,12 +21,67 @@
       <div class="menu-container">
         <a class="logo-container" href="index.html">
           <img
-            class="logo"
+            class="logo logo-light"
             src="images/saucepal-logo.svg"
-            alt="Saucepal home"
+            alt="Saucepal"
+          />
+          <img
+            class="logo logo-dark"
+            src="images/saucepal-logo-dark.svg"
+            alt="Saucepal"
           />
         </a>
         <ul class="menu-links">
+          <!--light / dark mode switch-->
+          <button
+            type="button"
+            id="theme-toggle"
+            class="theme-toggle"
+            role="switch"
+            aria-checked="false"
+            aria-label="Dark mode"
+          >
+            <span class="toggle-icon icon-sun">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <circle cx="12" cy="12" r="4" />
+                <path d="M12 2v2" />
+                <path d="M12 20v2" />
+                <path d="m4.93 4.93 1.41 1.41" />
+                <path d="m17.66 17.66 1.41 1.41" />
+                <path d="M2 12h2" />
+                <path d="M20 12h2" />
+                <path d="m6.34 17.66-1.41 1.41" />
+                <path d="m19.07 4.93-1.41 1.41" />
+              </svg>
+            </span>
+            <span class="toggle-icon icon-moon">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
+              </svg>
+            </span>
+          </button>
           <li class="menu-element">
             <a href="index.html">Home</a>
           </li>
@@ -161,7 +217,52 @@
         </div>
       </div>
     </main>
+    <dialog
+      id="remove-all-dialog"
+      class="dialog"
+      aria-labelledby="remove-all-title"
+    >
+      <h2 id="remove-all-title">Remove everything?</h2>
+      <p>This will clear every item from your fridge. You can't undo this.</p>
+      <div class="dialog-actions">
+        <button type="button" class="secondary-button" id="cancel-remove-all">
+          Cancel
+        </button>
+        <button type="button" class="primary-button" id="confirm-remove-all">
+          Remove all
+        </button>
+      </div>
+    </dialog>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <footer class="site-footer">
+      <div class="page-wrapper footer-content">
+        <div>
+          <img
+            class="logo logo-light"
+            src="images/saucepal-logo.svg"
+            alt="Saucepal"
+          />
+          <img
+            class="logo logo-dark"
+            src="images/saucepal-logo-dark.svg"
+            alt="Saucepal"
+          />
+        </div>
+
+        <nav aria-label="Footer">
+          <ul class="footer-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="fridge.html">My Fridge</a></li>
+            <li><a href="recipes.html">Recipes</a></li>
+            <li><a href="about.html">About</a></li>
+          </ul>
+        </nav>
+
+        <p class="footer-credits">
+          © 2026 Saucepal · <a href="about.html#credits">Credits</a>
+        </p>
+      </div>
+    </footer>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="fridge.js"></script>

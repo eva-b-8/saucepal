@@ -30,7 +30,6 @@ $(document).ready(function () {
     function (data) {
       console.log(data);
 
-      var items = [];
       $.each(data.meals, function (key, val) {
         const {
           strMeal,
@@ -57,42 +56,39 @@ $(document).ready(function () {
         ingredients.forEach(
           ({ ingredient, measure }) =>
             (ingredientHtml += `
-                <div class="recipe-ingredient">
-                <img src="https://www.themealdb.com/images/ingredients/${ingredient}.png"/>
-                <div class="ingredient-row"> ${ingredient.toLowerCase()} - ${measure.toLowerCase()}</div>
-                </div>
-                `),
+              <li class="recipe-ingredient">
+                <img src="https://www.themealdb.com/images/ingredients/${encodeURIComponent(ingredient)}.png" alt="" />
+                <span class="ingredient-name">${ingredient.toLowerCase()}</span>
+                <span class="ingredient-measure">${measure.toLowerCase()}</span>
+              </li>
+            `),
         );
 
-        items.push(
-          `
-            <div class="meal-main" id="${key}">
-               <div class="recipe-header">
-                <img class="meal-main-photo" src="${strMealThumb}"/>
-                <div>
-                <div>
-                <h1 class="meal-name-handwritten">${strMeal}</h1>
-                ${videoHtml}
-                </div>
-                </div>
-               </div>
-               <h3>Ingredients</h3>
-                <div class="ingredient-list">
-                ${ingredientHtml}
-                </div>
-                <div>
-                    <h3>Instructions</h3>
-                    <p class="recipe">${strInstructions}</p>
-                </div>
+        $("#meal-header").html(`
+          <div class="recipe-header">
+            <div class="meal-main-photo">
+              <img src="${strMealThumb}" alt="" />
             </div>
-            `,
-        );
-      });
+            <div class="recipe-header-content">
+              <h1 class="meal-name-handwritten">${strMeal}</h1>
+              ${videoHtml}
+            </div>
+          </div>
+        `);
 
-      $("<div/>", {
-        class: "meal-body",
-        html: items.join(""),
-      }).appendTo(".page-wrapper");
+        $("#meal-body").html(`
+          <section class="recipe-card">
+            <h2>Ingredients</h2>
+            <ul class="ingredient-list">
+              ${ingredientHtml}
+            </ul>
+          </section>
+          <section class="recipe-card">
+            <h2>Instructions</h2>
+            <p class="recipe">${strInstructions}</p>
+          </section>
+        `);
+      });
     },
   );
 });

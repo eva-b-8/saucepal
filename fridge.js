@@ -236,10 +236,19 @@ function showFridge() {
   });
 }
 
-$("#remove-all").on("click", function () {
-  let confirmed = confirm("Remove everything from your fridge?");
-  if (!confirmed) return;
+let removeAllDialog = document.getElementById("remove-all-dialog");
 
+$("#remove-all").on("click", function () {
+  removeAllDialog.showModal();
+  document.getElementById("cancel-remove-all").focus();
+});
+
+$("#cancel-remove-all").on("click", function () {
+  removeAllDialog.close();
+});
+
+$("#confirm-remove-all").on("click", function () {
+  removeAllDialog.close();
   localStorage.removeItem("fridge");
   showFridge();
   showToast("Fridge cleared");
