@@ -41,6 +41,7 @@ $("#unit").on("change", function () {
     step: settings.step,
     placeholder: settings.placeholder,
     min: settings.min,
+    max: settings.max,
   });
 });
 
@@ -49,12 +50,31 @@ let toastTimer;
 
 function showToast(message) {
   let toast = document.getElementById("toast");
-  toast.textContent = message;
-  toast.classList.add("toast-visible");
+  toast.textContent = "";
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => {
-    toast.classList.remove("toast-visible");
-  }, 4000);
+
+  // short delay so screen readers announce the message even if it repeats
+  setTimeout(() => {
+    toast.textContent = message;
+    toast.classList.add("toast-visible");
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("toast-visible");
+    }, 4000);
+  }, 50);
+}
+
+function showError(field, errorEl, message) {
+  errorEl.textContent = message;
+  errorEl.style.display = "block";
+  field.classList.add("input-error");
+  field.setAttribute("aria-invalid", "true");
+}
+
+function clearError(field, errorEl) {
+  errorEl.textContent = "";
+  errorEl.style.display = "none";
+  field.classList.remove("input-error");
+  field.removeAttribute("aria-invalid");
 }
 
 form.addEventListener("submit", (event) => {
@@ -70,17 +90,16 @@ form.addEventListener("submit", (event) => {
   let quantityField = document.getElementById("quantity");
   let ingredientError = document.getElementById("ingredientError");
   let quantityError = document.getElementById("quantityError");
-  ingredientError.style.display = "none";
-  quantityError.style.display = "none";
-  ingredientField.classList.remove("input-error");
-  quantityField.classList.remove("input-error");
+  clearError(ingredientField, ingredientError);
+  clearError(quantityField, quantityError);
 
   let ingredientIsValid = ingredient.trim().length > 2;
   if (!ingredientIsValid) {
-    ingredientError.style.display = "block";
-    ingredientError.textContent =
-      "Ingredient name needs to be at least 3 characters long.";
-    ingredientField.classList.add("input-error");
+    showError(
+      ingredientField,
+      ingredientError,
+      "Ingredient name needs to be at least 3 characters long.",
+    );
   }
 
   let min = unitSettings[unit].min;
@@ -88,19 +107,26 @@ form.addEventListener("submit", (event) => {
   let quantityIsEmpty = formData.get("quantity") === "";
   let quantityIsValid = quantityIsEmpty || (quantity >= min && quantity <= max);
   if (!quantityIsValid) {
-    quantityError.style.display = "block";
-    quantityError.textContent =
+    showError(
+      quantityField,
+      quantityError,
       "The amount needs to be between " +
-      min +
-      " and " +
-      max +
-      " " +
-      unit +
-      ".";
-    quantityField.classList.add("input-error");
+        min +
+        " and " +
+        max +
+        " " +
+        unit +
+        ".",
+    );
   }
 
-  if (!ingredientIsValid || !quantityIsValid) {
+  // move focus to the first invalid field so its error is read out
+  if (!ingredientIsValid) {
+    ingredientField.focus();
+    return;
+  }
+  if (!quantityIsValid) {
+    quantityField.focus();
     return;
   }
 
@@ -110,7 +136,7 @@ form.addEventListener("submit", (event) => {
 
   form.reset();
   showFridge();
-  showToast("Added to fridge");
+  showToast("Added " + capitalise(ingredient) + " to fridge");
   $("#unit").trigger("change");
 });
 
@@ -146,10 +172,12 @@ function showFridge() {
 
     let shelf = document.createElement("section");
     shelf.className = "shelf";
-    shelf.innerHTML = "<h2></h2><ul></ul>";
-    shelf.querySelector("h2").textContent = category;
+    shelf.innerHTML = "<h3></h3><ul></ul>";
+    shelf.querySelector("h3").textContent = category;
 
     items.forEach((item) => {
+      let name = capitalise(item.ingredient);
+
       let $icon = $("<span>", {
         class: "icon-with-background item-icon",
         "aria-hidden": "true",
@@ -158,8 +186,7 @@ function showFridge() {
       let $info = $("<span>", { class: "item-info" }).append(
         $icon,
         document.createTextNode(
-          capitalise(item.ingredient) +
-            (formatAmount(item) ? " – " + formatAmount(item) : ""),
+          name + (formatAmount(item) ? " – " + formatAmount(item) : ""),
         ),
       );
 
@@ -168,24 +195,38 @@ function showFridge() {
       let actions = document.createElement("div");
       actions.className = "item-actions";
 
-      let searchButton = document.createElement("button");
-      searchButton.textContent = "Search recipes";
-      searchButton.className = "secondary-button";
-      searchButton.addEventListener("click", () => {
-        window.location.href = `recipes.html?ingredient=${encodeURIComponent(item.ingredient)}`;
-      });
+      let searchLink = document.createElement("a");
+      searchLink.textContent = "Search recipes";
+      searchLink.href = `recipes.html?ingredient=${encodeURIComponent(item.ingredient)}`;
+      searchLink.className = "secondary-button";
+      searchLink.setAttribute("aria-label", "Search recipes with " + name);
 
       let removeButton = document.createElement("button");
+      removeButton.type = "button";
       removeButton.textContent = "Remove";
       removeButton.className = "error-button";
+      removeButton.setAttribute("aria-label", "Remove " + name);
       removeButton.addEventListener("click", () => {
+        let buttons = [
+          ...document.querySelectorAll("#fridge-list .error-button"),
+        ];
+        let position = buttons.indexOf(removeButton);
+
         fridge.splice(fridge.indexOf(item), 1);
         localStorage.setItem("fridge", JSON.stringify(fridge));
         showFridge();
-        showToast("Removed from fridge");
+        showToast("Removed " + name);
+
+        // keep focus near where it was instead of losing it
+        let remaining = document.querySelectorAll("#fridge-list .error-button");
+        if (remaining.length > 0) {
+          remaining[Math.min(position, remaining.length - 1)].focus();
+        } else {
+          document.getElementById("ingredient").focus();
+        }
       });
 
-      actions.append(searchButton, removeButton);
+      actions.append(searchLink, removeButton);
       li.appendChild(actions);
 
       shelf.querySelector("ul").appendChild(li);
@@ -202,6 +243,7 @@ $("#remove-all").on("click", function () {
   localStorage.removeItem("fridge");
   showFridge();
   showToast("Fridge cleared");
+  document.getElementById("ingredient").focus();
 });
 
 showFridge();

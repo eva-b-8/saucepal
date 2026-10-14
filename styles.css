@@ -103,8 +103,6 @@ textarea {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 70%;
-  margin: 1.5rem auto 0 auto;
 }
 
 .fridge-header #fridge-count {
@@ -181,9 +179,10 @@ form input {
 
 .page-wrapper,
 .category-wrapper {
-  padding: 40px 100px;
-  width: 80%;
+  width: 100%;
+  max-width: 1200px;
   margin: 0 auto;
+  padding: 40px clamp(20px, 5vw, 60px);
 }
 
 h1 {
@@ -556,12 +555,6 @@ span.required {
   color: var(--white);
 }
 
-@media (max-width: 65.5em) {
-  .page-wrapper {
-    padding: 60px 20px;
-  }
-}
-
 @media (max-width: 73em) {
   .header-svg {
     display: none;
@@ -575,11 +568,6 @@ span.required {
 }
 
 @media (max-width: 25em) {
-  .page-wrapper {
-    padding: 30px;
-    width: 100%;
-  }
-
   .hero-banner {
     padding: 20px;
     min-height: 650px;
@@ -728,12 +716,11 @@ li.menu-link {
   background-color: var(--white);
   border-radius: 20px;
   padding: 40px;
-  width: 70%;
-  margin: 1.5rem auto 0 auto;
   text-align: center;
+  margin-top: 1.5rem;
 }
 
-.empty-state h4 {
+.empty-state h3 {
   margin-bottom: 0.5rem;
 }
 
@@ -902,7 +889,7 @@ textarea:focus,
   padding-bottom: 0;
 }
 
-.shelf h2 {
+.shelf h3 {
   margin-bottom: 0.75rem;
 }
 
@@ -954,4 +941,24 @@ textarea:focus,
 .my-new-list a {
   text-decoration: none;
   display: block;
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: -100px;
+  transform: translateX(-50%);
+  z-index: 30;
+  padding: 12px 16px;
+  background-color: var(--white);
+  color: var(--primary-color);
+  font-weight: 600;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgb(0 0 0 / 0.2);
+}
+
+.skip-link:focus {
+  top: 12px;
+  outline: 3px solid var(--field-border-focus);
+  outline-offset: 2px;
 }
