@@ -132,7 +132,7 @@ p {
 }
 
 .form-intro p {
-  margin: 12px 0 36px 0;
+  margin: 12px 0;
 }
 
 form {
@@ -291,7 +291,16 @@ a:hover {
   text-align: center;
 }
 
-span.handwritten {
+span.handwritten,
+.handwritten {
+  font-family: "Quicksand", sans-serif;
+  letter-spacing: -1px;
+  color: var(--primary-color);
+}
+
+.meal-name-handwritten {
+  text-transform: uppercase;
+  font-size: 3rem;
   font-family: "Quicksand", sans-serif;
   letter-spacing: -1px;
   color: var(--primary-color);
@@ -452,50 +461,79 @@ span.required {
   color: var(--primary-darker-color);
 }
 
+.section-title {
+  margin-bottom: 20px;
+  text-transform: capitalize;
+}
+
 .category-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   margin: 0 auto;
   grid-gap: 20px;
 }
 
 .category-list a {
+  display: block;
   text-decoration: none;
+  border-radius: 20px;
+}
+
+.category-list a:focus-visible {
+  outline: 3px solid var(--field-border-focus);
+  outline-offset: 3px;
+}
+
+.category-list a:focus-visible img {
+  transform: scale(1.05);
 }
 
 .category-image {
   overflow: hidden;
-  border-radius: 20px 20px 0 0;
 }
 
 .category-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   background-color: var(--white);
   border-radius: 20px;
-  text-align: center;
   overflow: hidden;
-  transition: transform 0.6s ease;
+  text-align: center;
   box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 2px 0px;
+  transition: box-shadow 0.6s ease;
+  isolation: isolate;
+  transform: translateZ(0);
 }
 
 .category-card img {
   width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
   display: block;
+  background-color: var(--primary-gray);
   transition: transform 0.6s ease;
-  background-color: var(--primary-lightest-gray);
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
-.category-card:hover img {
+.category-card:hover img,
+.category-list a:focus-visible img {
   transform: scale(1.05);
 }
 
 .category-card:hover {
   box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
-  transition: transform 0.6s ease;
 }
 
 .category-card h3 {
-  color: var(--off-black);
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
   padding: 16px;
+  color: var(--off-black);
 }
 
 .meal {
@@ -530,7 +568,7 @@ span.required {
   display: block;
   transition: transform 0.6s ease;
   background-color: var(--primary-lightest-gray);
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 3 / 2;
   object-fit: cover;
 }
 
@@ -701,6 +739,25 @@ li.menu-link {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .toast {
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, 0);
+  }
+
+  .category-card:hover img,
+  .category-list a:focus-visible img,
+  .meal:hover img {
+    transform: none;
+  }
+
+  .category-card img,
+  .meal img {
+    transition: none;
+  }
   .toast {
     transition: opacity 0.3s ease;
     transform: translate(-50%, 0);
@@ -720,12 +777,17 @@ li.menu-link {
   margin-top: 1.5rem;
 }
 
-.empty-state h3 {
+.empty-state h2 {
   margin-bottom: 0.5rem;
 }
 
 .empty-state p {
   margin: 0;
+}
+
+.header-tagline {
+  font-weight: 700;
+  font-size: 1.25rem;
 }
 
 .icon-with-background {
@@ -933,7 +995,7 @@ textarea:focus,
 
 .my-new-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-gap: 20px;
   width: 100%;
 }
@@ -961,4 +1023,36 @@ textarea:focus,
   top: 12px;
   outline: 3px solid var(--field-border-focus);
   outline-offset: 2px;
+}
+
+.recipe-ingredient {
+  display: inline-flex;
+  align-items: center;
+}
+
+.recipe-ingredient img {
+  max-width: 50px;
+}
+
+.ingredient-list {
+  display: grid;
+}
+
+.recipe-header {
+  display: grid;
+  align-items: center;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 30px 0;
+  grid-gap: 24px;
+}
+
+.recipe-header img {
+  justify-self: center;
+  border-radius: 15px;
+  width: 100%;
+  justify-self: center;
+}
+
+.recipe {
+  white-space: pre-line;
 }

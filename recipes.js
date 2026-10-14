@@ -1,4 +1,4 @@
-// handles search via query param
+// handles search via ingredient query param
 
 $(document).ready(function () {
   const url = window.location.search;
@@ -10,45 +10,75 @@ $(document).ready(function () {
   searchByIngredientName(ingredient);
 });
 
+// handles search via category query param
+
+$(document).ready(function () {
+  const url = window.location.search;
+  const params = new URLSearchParams(url);
+  let category = params.get("category");
+  if (!category) return;
+  category = category.trim();
+  console.log("searching for recipes with ", category);
+  searchByCategory(category);
+});
+
+function renderRecipeList(data, term) {
+  $(".section-title, .my-new-list, #category-list").remove();
+
+  if (data.meals === null || data.meals.length === 0) {
+    showNoResultsFound();
+    return;
+  }
+  resetEmptyState();
+  var items = [];
+  $.each(data.meals, function (key, val) {
+    const { strMeal, strMealThumb, idMeal, strArea } = val;
+    console.log(val);
+
+    items.push(
+      `
+            <a href="meal.html?id=${idMeal}">
+                <div class="meal" id="${key}">
+                <div class="meal-image">
+                    <img src="${strMealThumb}" alt=""/></div>
+                    <h3>${strMeal}</h3>
+                </div>
+            </a>
+            `,
+    );
+  });
+
+  $("<h2/>", {
+    class: "section-title",
+    text: term + " recipes",
+  }).appendTo(".category-wrapper");
+
+  $("<div/>", {
+    class: "my-new-list",
+    html: items.join(""),
+  }).appendTo(".category-wrapper");
+
+  $("#text-search").val(ingredient);
+}
+
 function searchByIngredientName(ingredient) {
   // https://api.jquery.com/jQuery.getJSON/
   $.getJSON(
     `https://www.themealdb.com/api/json/v2/65232507/filter.php?i=${ingredient}`,
     function (data) {
       console.log(data);
+      renderRecipeList(data, ingredient);
+    },
+  );
+}
 
-      if (data.meals === null || data.meals.length === 0) {
-        showNoResultsFound();
-        $("#category-list").empty();
-        return;
-      }
-      resetEmptyState();
-      $(".my-new-list").empty();
-      var items = [];
-      $.each(data.meals, function (key, val) {
-        const { strMeal, strMealThumb, idMeal, strArea } = val;
-        console.log(val);
-
-        items.push(
-          `
-            <a href="meal.html?id=${idMeal}">
-                <div class="meal" id="${key}">
-                <div class="meal-image">
-                    <img src="${strMealThumb}"/></div>
-                    <h3>${strMeal}</h3>
-                </div>
-            </a>
-            `,
-        );
-      });
-
-      $("<div/>", {
-        class: "my-new-list",
-        html: items.join(""),
-      }).appendTo(".category-wrapper");
-
-      $("#text-search").val(ingredient);
-      $("#category-list").empty();
+function searchByCategory(category) {
+  // https://api.jquery.com/jQuery.getJSON/
+  $.getJSON(
+    `https://www.themealdb.com/api/json/v2/65232507/filter.php?c=${category}`,
+    function (data) {
+      console.log(data);
+      renderRecipeList(data, category);
     },
   );
 }
@@ -75,10 +105,10 @@ $(document).ready(function () {
 
         items.push(
           `
-  <a href="recipes.html?ingredient=${strCategory}">
+  <a href="recipes.html?category=${strCategory}">
     <div class="category-card">
       <div class="category-image">
-        <img src="${strCategoryThumb}" />
+        <img src="${strCategoryThumb}" alt="" />
       </div>
       <h3>${strCategory}</h3>
     </div>
@@ -86,6 +116,11 @@ $(document).ready(function () {
             `,
         );
       });
+
+      $("<h2/>", {
+        class: "section-title",
+        text: "Browse categories",
+      }).appendTo(".category-wrapper");
 
       $("<div/>", {
         id: "category-list",
@@ -124,7 +159,6 @@ $(document).ready(function () {
     let meal = formData.get("meal");
     console.log("searching for", meal);
     if (meal.trim() === "") return;
-    $("#my-search-list").empty();
     searchByIngredientName(meal);
   });
 });

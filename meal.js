@@ -57,30 +57,42 @@ $(document).ready(function () {
         ingredients.forEach(
           ({ ingredient, measure }) =>
             (ingredientHtml += `
-                <div class="recipe-ingredients">
+                <div class="recipe-ingredient">
                 <img src="https://www.themealdb.com/images/ingredients/${ingredient}.png"/>
-                <p>${measure.toLowerCase()} of ${ingredient.toLowerCase()}</p>
+                <div class="ingredient-row"> ${ingredient.toLowerCase()} - ${measure.toLowerCase()}</div>
                 </div>
                 `),
         );
 
         items.push(
           `
-            <div class="meal" id="${key}">
-                <img class="meal-image" src="${strMealThumb}"/>
-                ${ingredientHtml}
-                ${strMeal} (${strArea} food)
-                <p>${strInstructions}</p>
+            <div class="meal-main" id="${key}">
+               <div class="recipe-header">
+                <img class="meal-main-photo" src="${strMealThumb}"/>
+                <div>
+                <div>
+                <h1 class="meal-name-handwritten">${strMeal}</h1>
                 ${videoHtml}
+                </div>
+                </div>
+               </div>
+               <h3>Ingredients</h3>
+                <div class="ingredient-list">
+                ${ingredientHtml}
+                </div>
+                <div>
+                    <h3>Instructions</h3>
+                    <p class="recipe">${strInstructions}</p>
+                </div>
             </div>
             `,
         );
       });
 
       $("<div/>", {
-        class: "my-new-list",
+        class: "meal-body",
         html: items.join(""),
-      }).appendTo("body");
+      }).appendTo(".page-wrapper");
     },
   );
 });

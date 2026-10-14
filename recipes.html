@@ -48,7 +48,7 @@
             <div class="form-intro">
               <h1>Try something <span class="handwritten">delicious</span>!</h1>
               <br />
-              <h2>Search for meals and ingredients.</h2>
+              <p class="header-tagline">Search for meals and ingredients.</p>
               <p>You can also start by browsing the categories below.</p>
             </div>
             <div class="header-svg">
@@ -86,34 +86,38 @@
           </form>
         </div>
       </div>
-      <div class="empty-state" id="empty-state" hidden>
-        <div class="icon-with-background">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            width="32"
-            height="32"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="1.5"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            aria-hidden="true"
-          >
-            <path d="M2 12h20" />
-            <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" />
-            <path d="m4 8 16-4" />
-            <path
-              d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8"
-            />
-          </svg>
+
+      <div class="category-wrapper">
+        <div class="empty-state" id="empty-state" hidden>
+          <div class="icon-with-background">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              width="32"
+              height="32"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M2 12h20" />
+              <path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8" />
+              <path d="m4 8 16-4" />
+              <path
+                d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8"
+              />
+            </svg>
+          </div>
+          <h2>No matching recipes</h2>
+          <p>
+            Try a different ingredient, or
+            <a href="recipes.html">browse all categories</a>.
+          </p>
         </div>
-        <h4>No matching recipes</h4>
-        <p>Please search for a meal above.</p>
       </div>
     </main>
-
-    <div class="category-wrapper"></div>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
     <script src="recipes.js"></script>
