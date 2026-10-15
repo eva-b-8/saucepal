@@ -1,13 +1,22 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Patrick+Hand&family=Quicksand:wght@300..700&display=swap"
+      rel="stylesheet"
+    />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meal - Saucepal</title>
+    <title>About - Saucepal</title>
+    <link rel="icon" type="image/svg" href="images/saucepal-favicon.svg" />
+    <link rel="icon" type="image/png" href="images/saucepal-favicon.png" />
     <script src="shared.js"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- MENU -->
     <header class="menu">
       <div class="menu-container">
@@ -15,15 +24,15 @@
           <img
             class="logo logo-light"
             src="images/saucepal-logo.svg"
-            alt="Saucepal home"
+            alt="saucepal home"
           />
           <img
             class="logo logo-dark"
             src="images/saucepal-logo-dark.svg"
-            alt="Saucepal home"
+            alt="saucepal home"
           />
         </a>
-        <ul class="menu-links">
+        <div class="right-menu">
           <!--light / dark mode switch-->
           <button
             type="button"
@@ -74,21 +83,196 @@
               </svg>
             </span>
           </button>
-          <li class="menu-element">
-            <a href="index.html">Home</a>
-          </li>
-          <li class="menu-element">
-            <a href="fridge.html">My Fridge</a>
-          </li>
-          <li class="menu-element">
-            <a href="recipes.html">Recipes</a>
-          </li>
-          <li class="menu-element active">
-            <a href="about.html" aria-current="page">About</a>
-          </li>
-        </ul>
+
+          <!--mobile menu button-->
+          <button
+            type="button"
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="menu-links"
+            aria-label="Menu"
+          >
+            <svg
+              class="icon-open"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 6h16" />
+              <path d="M4 12h16" />
+              <path d="M4 18h16" />
+            </svg>
+            <svg
+              class="icon-close"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+
+          <nav aria-label="Main" class="main-nav">
+            <ul class="menu-links" id="menu-links">
+              <li class="menu-element">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="menu-element">
+                <a href="fridge.html">My Fridge</a>
+              </li>
+              <li class="menu-element">
+                <a href="recipes.html">Recipes</a>
+              </li>
+              <li class="menu-element active">
+                <a href="about.html" aria-current="page">About</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
+
+    <main id="main">
+      <div class="page-header-light">
+        <div class="page-wrapper">
+          <nav aria-label="Breadcrumb" class="breadcrumb">
+            <ol>
+              <li><a href="index.html">Home</a></li>
+              <li><span aria-current="page">About</span></li>
+            </ol>
+          </nav>
+          <div class="form-intro-container">
+            <div class="form-intro">
+              <h1>About <span class="handwritten">Saucepal</span></h1>
+              <p class="header-tagline">
+                Cook with what you have in your fridge.
+              </p>
+              <p>
+                Saucepal helps you keep track of what's in your fridge and find
+                recipes that use it, so less food goes to waste.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="page-wrapper about-body">
+        <section class="recipe-card">
+          <h2>How it works</h2>
+          <p>
+            Add ingredients to your fridge, then search for recipes that use
+            them. Your fridge is saved in your browser, so it's still there next
+            time.
+          </p>
+        </section>
+
+        <section class="recipe-card" id="credits">
+          <h2>Credits</h2>
+          <ul class="credits-list">
+            <li>
+              Light colour palette from
+              <a href="https://uicolors.app/generate/c63e19">UI Colors App</a>
+            </li>
+            <li>
+              Dark colour palette inspired by
+              <a
+                href="https://m2.material.io/design/color/dark-theme.html#states"
+                >Material Design</a
+              >
+            </li>
+            <li>
+              Recipe data and images from
+              <a href="https://www.themealdb.com">TheMealDB</a>
+            </li>
+            <li>
+              Logo and favicon made by me in Adobe Illustrator
+              <br />
+              <img
+                class="about-miniature"
+                width="150px"
+                src="images/saucepal-logo.svg"
+                alt="Saucepal logo"
+              />
+              <img
+                class="about-miniature"
+                width="50px"
+                src="images/saucepal-favicon.svg"
+                alt="Saucepal favicon"
+              />
+            </li>
+            <li>
+              Background photos from
+              <a href="https://www.pexels.com/">Pexels</a>:
+              <a
+                href="https://www.pexels.com/photo/assorted-fruits-and-vegetables-on-a-marble-top-8939514/"
+                >light theme</a
+              >
+              and
+              <a
+                href="https://www.pexels.com/photo/studio-shot-of-peppers-tomato-and-lime-on-black-background-5701924/"
+                >dark theme</a
+              >
+            </li>
+            <li>
+              Illustrations by
+              <a href="https://undraw.co">unDraw</a>:
+              <a href="https://undraw.co/search/breakfast">breakfast</a>
+              and
+              <a href="https://undraw.co/search/cooking">cooking</a>
+            </li>
+            <li>
+              Icons from
+              <a href="https://lucide.dev">Lucide</a>:
+              <a href="https://lucide.dev/icons/sun">sun</a>,
+              <a href="https://lucide.dev/icons/moon">moon</a>,
+              <a href="https://lucide.dev/icons/menu">menu</a>,
+              <a href="https://lucide.dev/icons/utensils">utensils</a>,
+              <a href="https://lucide.dev/icons/snowflake">snowflake</a>,
+              <a href="https://lucide.dev/icons/can">tin</a>,
+              <a href="https://lucide.dev/icons/egg-fried">egg</a>,
+              <a href="https://lucide.dev/icons/ham">ham</a>,
+              <a href="https://lucide.dev/icons/carrot">carrot</a>,
+              <a href="https://lucide.dev/icons/refrigerator">fridge</a>,
+              <a href="https://lucide.dev/icons/cooking-pot">cooking pot</a>,
+              <a href="https://lucide.dev/icons/x">close</a>,
+              <a href="https://lucide.dev/icons/chevron-right">chevron right</a>
+            </li>
+            <li>
+              Fonts:
+              <a href="https://fonts.google.com/specimen/Inter">Inter</a>
+              and
+              <a href="https://fonts.google.com/specimen/Quicksand"
+                >Quicksand</a
+              >
+              from
+              <a href="https://fonts.google.com">Google Fonts</a>
+            </li>
+            <li>
+              Recipe videos embedded from
+              <a href="https://www.youtube.com">YouTube</a>
+            </li>
+            <li>Built with <a href="https://jquery.com">jQuery</a></li>
+          </ul>
+        </section>
+      </div>
+    </main>
+
     <footer class="site-footer">
       <div class="page-wrapper footer-content">
         <div>

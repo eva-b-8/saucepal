@@ -7,7 +7,7 @@
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Patrick+Hand&family=Quicksand:wght@300..700&display=swap"
       rel="stylesheet"
     />
-    <title>My Fridge – Saucepal</title>
+    <title>My Fridge – saucepal</title>
     <link rel="icon" type="image/x-icon" href="images/saucepal-favicon.png" />
     <script src="shared.js"></script>
     <link rel="stylesheet" href="styles.css" />
@@ -23,7 +23,7 @@
           <img
             class="logo logo-light"
             src="images/saucepal-logo.svg"
-            alt="Saucepal"
+            alt="Saucepal home"
           />
           <img
             class="logo logo-dark"
@@ -31,7 +31,7 @@
             alt="Saucepal"
           />
         </a>
-        <ul class="menu-links">
+        <div class="right-menu">
           <!--light / dark mode switch-->
           <button
             type="button"
@@ -82,19 +82,68 @@
               </svg>
             </span>
           </button>
-          <li class="menu-element">
-            <a href="index.html">Home</a>
-          </li>
-          <li class="menu-element active">
-            <a href="fridge.html" aria-current="page">My Fridge</a>
-          </li>
-          <li class="menu-element">
-            <a href="recipes.html">Recipes</a>
-          </li>
-          <li class="menu-element">
-            <a href="about.html">About</a>
-          </li>
-        </ul>
+
+          <!--mobile menu button-->
+          <button
+            type="button"
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="menu-links"
+            aria-label="Menu"
+          >
+            <svg
+              class="icon-open"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 6h16" />
+              <path d="M4 12h16" />
+              <path d="M4 18h16" />
+            </svg>
+            <svg
+              class="icon-close"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+
+          <nav aria-label="Main" class="main-nav">
+            <ul class="menu-links" id="menu-links">
+              <li class="menu-element">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="menu-element active">
+                <a href="fridge.html" aria-current="page">My Fridge</a>
+              </li>
+              <li class="menu-element">
+                <a href="recipes.html">Recipes</a>
+              </li>
+              <li class="menu-element">
+                <a href="about.html">About</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
 
@@ -175,6 +224,17 @@
                 <option value="Other">Other</option>
               </select>
               <div class="form-error"></div>
+            </div>
+
+            <div class="field">
+              <label for="expiry">Expiry date</label>
+              <input
+                type="date"
+                id="expiry"
+                name="expiry"
+                aria-describedby="expiryError"
+              />
+              <div class="form-error" id="expiryError"></div>
             </div>
 
             <button type="submit" class="primary-button">Add to fridge</button>
@@ -259,7 +319,7 @@
         </nav>
 
         <p class="footer-credits">
-          © 2026 Saucepal · <a href="about.html#credits">Credits</a>
+          © 2026 saucepal · <a href="about.html#credits">Credits</a>
         </p>
       </div>
     </footer>

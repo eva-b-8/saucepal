@@ -24,6 +24,16 @@ function formatAmount(item) {
   return item.quantity + " " + unit;
 }
 
+function formatExpiry(value) {
+  // build the date from its parts so it isn't shifted by time zones
+  const [year, month, day] = value.split("-").map(Number);
+  return new Date(year, month - 1, day).toLocaleDateString("en-GB", {
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
 function capitalise(text) {
   let trimmed = text.trim();
   return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
@@ -47,6 +57,19 @@ $("#unit").on("change", function () {
 
 let form = document.getElementById("add-form");
 let toastTimer;
+
+// stop past dates being chosen in the expiry picker
+const expiryField = document.getElementById("expiry");
+
+function todayAsInputValue() {
+  const now = new Date();
+  const year = now.getFullYear();
+  const month = String(now.getMonth() + 1).padStart(2, "0");
+  const day = String(now.getDate()).padStart(2, "0");
+  return `${year}-${month}-${day}`;
+}
+
+expiryField.min = todayAsInputValue();
 
 function showToast(message) {
   let toast = document.getElementById("toast");
@@ -85,13 +108,16 @@ form.addEventListener("submit", (event) => {
   let quantity = +formData.get("quantity");
   let unit = formData.get("unit");
   let category = formData.get("category");
+  let expiry = formData.get("expiry");
 
   let ingredientField = document.getElementById("ingredient");
   let quantityField = document.getElementById("quantity");
   let ingredientError = document.getElementById("ingredientError");
   let quantityError = document.getElementById("quantityError");
+  let expiryError = document.getElementById("expiryError");
   clearError(ingredientField, ingredientError);
   clearError(quantityField, quantityError);
+  clearError(expiryField, expiryError);
 
   let ingredientIsValid = ingredient.trim().length > 2;
   if (!ingredientIsValid) {
@@ -120,6 +146,15 @@ form.addEventListener("submit", (event) => {
     );
   }
 
+  let expiryIsValid = expiry === "" || expiry >= expiryField.min;
+  if (!expiryIsValid) {
+    showError(
+      expiryField,
+      expiryError,
+      "The expiry date can't be in the past.",
+    );
+  }
+
   // move focus to the first invalid field so its error is read out
   if (!ingredientIsValid) {
     ingredientField.focus();
@@ -129,9 +164,13 @@ form.addEventListener("submit", (event) => {
     quantityField.focus();
     return;
   }
+  if (!expiryIsValid) {
+    expiryField.focus();
+    return;
+  }
 
   let fridge = JSON.parse(localStorage.getItem("fridge")) || [];
-  fridge.push({ ingredient, quantity, unit, category });
+  fridge.push({ ingredient, quantity, unit, category, expiry });
   localStorage.setItem("fridge", JSON.stringify(fridge));
 
   form.reset();
@@ -183,12 +222,26 @@ function showFridge() {
         "aria-hidden": "true",
       }).html(categoryIcons[item.category] || categoryIcons.Other);
 
-      let $info = $("<span>", { class: "item-info" }).append(
-        $icon,
-        document.createTextNode(
-          name + (formatAmount(item) ? " – " + formatAmount(item) : ""),
-        ),
+      let $text = $("<span>", { class: "item-text" }).append(
+        $("<span>", {
+          class: "item-name",
+          text: name + (formatAmount(item) ? " – " + formatAmount(item) : ""),
+        }),
       );
+
+      if (item.expiry) {
+        $text.append(
+          $("<span>", { class: "item-expiry" }).append(
+            "Use by ",
+            $("<time>", {
+              datetime: item.expiry,
+              text: formatExpiry(item.expiry),
+            }),
+          ),
+        );
+      }
+
+      let $info = $("<span>", { class: "item-info" }).append($icon, $text);
 
       let li = $("<li>").append($info)[0];
 

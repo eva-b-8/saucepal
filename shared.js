@@ -6,8 +6,35 @@
   } catch (e) {}
 })();
 
-// wire up the toggle once the page has loaded
 document.addEventListener("DOMContentLoaded", () => {
+  // ---------- mobile menu ----------
+  const menuToggle = document.getElementById("menu-toggle");
+  const menuLinks = document.getElementById("menu-links");
+
+  if (menuToggle && menuLinks) {
+    function setMenu(open) {
+      menuToggle.setAttribute("aria-expanded", open);
+      menuLinks.classList.toggle("is-open", open);
+    }
+
+    menuToggle.addEventListener("click", () => {
+      setMenu(menuToggle.getAttribute("aria-expanded") !== "true");
+    });
+
+    menuLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => setMenu(false));
+    });
+
+    // Esc closes the menu and returns focus to the button
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && menuLinks.classList.contains("is-open")) {
+        setMenu(false);
+        menuToggle.focus();
+      }
+    });
+  }
+
+  // ---------- theme toggle ----------
   const themeToggle = document.getElementById("theme-toggle");
   if (!themeToggle) return;
 
@@ -32,4 +59,11 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   updateToggle();
+
+  // enable the animation only after the starting position is set
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      themeToggle.classList.add("is-ready");
+    });
+  });
 });

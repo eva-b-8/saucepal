@@ -8,7 +8,7 @@
       rel="stylesheet"
     />
 
-    <title>Saucepal</title>
+    <title>saucepal</title>
     <link rel="icon" type="image/x-icon" href="images/saucepal-favicon.png" />
     <script src="shared.js"></script>
     <link rel="stylesheet" href="styles.css" />
@@ -16,6 +16,7 @@
   </head>
 
   <body>
+    <a class="skip-link" href="#main">Skip to content</a>
     <!-- MENU -->
     <header class="menu">
       <div class="menu-container">
@@ -23,7 +24,7 @@
           <img
             class="logo logo-light"
             src="images/saucepal-logo.svg"
-            alt="Saucepal"
+            alt="Saucepal home"
           />
           <img
             class="logo logo-dark"
@@ -31,7 +32,7 @@
             alt="Saucepal"
           />
         </a>
-        <ul class="menu-links">
+        <div class="right-menu">
           <!--light / dark mode switch-->
           <button
             type="button"
@@ -82,21 +83,71 @@
               </svg>
             </span>
           </button>
-          <li class="menu-element active">
-            <a href="index.html" aria-current="page">Home</a>
-          </li>
-          <li class="menu-element">
-            <a href="fridge.html">My Fridge</a>
-          </li>
-          <li class="menu-element">
-            <a href="recipes.html">Recipes</a>
-          </li>
-          <li class="menu-element">
-            <a href="about.html">About</a>
-          </li>
-        </ul>
+
+          <!--mobile menu button-->
+          <button
+            type="button"
+            id="menu-toggle"
+            class="menu-toggle"
+            aria-expanded="false"
+            aria-controls="menu-links"
+            aria-label="Menu"
+          >
+            <svg
+              class="icon-open"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M4 6h16" />
+              <path d="M4 12h16" />
+              <path d="M4 18h16" />
+            </svg>
+            <svg
+              class="icon-close"
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              aria-hidden="true"
+            >
+              <path d="M18 6 6 18" />
+              <path d="m6 6 12 12" />
+            </svg>
+          </button>
+
+          <nav aria-label="Main" class="main-nav">
+            <ul class="menu-links" id="menu-links">
+              <li class="menu-element active">
+                <a href="index.html" aria-current="page">Home</a>
+              </li>
+              <li class="menu-element">
+                <a href="fridge.html">My Fridge</a>
+              </li>
+              <li class="menu-element">
+                <a href="recipes.html">Recipes</a>
+              </li>
+              <li class="menu-element">
+                <a href="about.html">About</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     </header>
+
     <!-- HERO BANNER -->
     <!--Image source: https://www.pexels.com/photo/assorted-fruits-and-vegetables-on-a-marble-top-8939514/-->
     <section class="hero-banner">
@@ -146,7 +197,7 @@
         </nav>
 
         <p class="footer-credits">
-          © 2026 Saucepal · <a href="about.html#credits">Credits</a>
+          © 2026 saucepal · <a href="about.html#credits">Credits</a>
         </p>
       </div>
     </footer>
