@@ -141,6 +141,7 @@ $(document).ready(function () {
             <p class="recipe">${strInstructions}</p>
           </section>
         `);
+        // https://stackoverflow.com/questions/413439/how-to-dynamically-change-a-web-pages-title
         document.title = `${strMeal} - Saucepal`;
       });
     },
