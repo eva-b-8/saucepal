@@ -363,8 +363,7 @@ span.handwritten,
   color: var(--link);
 }
 
-.meal-name-handwritten {
-  text-transform: uppercase;
+.meal-name {
   font-size: 3rem;
   font-family: "Quicksand", sans-serif;
   letter-spacing: -1px;
