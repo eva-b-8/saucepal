@@ -1,5 +1,5 @@
 function downloadPDF() {
-  const mealNameEl = document.querySelector(".meal-name-handwritten");
+  const mealNameEl = document.querySelector(".meal-name");
   const mealBodyEl = document.querySelector("#meal-body");
 
   const nameClone = mealNameEl.cloneNode(true);
@@ -127,7 +127,7 @@ $(document).ready(function () {
               <img src="${strMealThumb}" alt="" />
             </div>
             <div class="recipe-header-content">
-              <h1 class="meal-name-handwritten">${strMeal}</h1>
+              <h1 class="meal-name">${strMeal}</h1>
               <button onclick="downloadPDF()" class="primary-button">Download as PDF</button>
               ${videoHtml}
             </div>
