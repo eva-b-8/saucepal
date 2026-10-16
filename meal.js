@@ -10,11 +10,6 @@ function downloadPDF() {
     el.querySelectorAll("img, picture, script").forEach((n) => n.remove()),
   );
 
-  // Copy the page's stylesheets so the PDF is styled
-  const styles = [...document.querySelectorAll('link[rel="stylesheet"], style')]
-    .map((el) => el.outerHTML)
-    .join("\n");
-
   const html = `<!DOCTYPE html>
 <html>
 <head>
@@ -128,7 +123,7 @@ $(document).ready(function () {
             </div>
             <div class="recipe-header-content">
               <h1 class="meal-name">${strMeal}</h1>
-              <button onclick="downloadPDF()" class="primary-button">Download as PDF</button>
+              <button onclick="downloadPDF()" class="secondary-button">Download the recipe PDF</button>
               ${videoHtml}
             </div>
           </div>

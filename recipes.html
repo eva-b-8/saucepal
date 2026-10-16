@@ -163,7 +163,7 @@
             <div class="form-intro">
               <h1>Try something <span class="handwritten">delicious</span>!</h1>
               <br />
-              <p class="header-tagline">Search for ingredients.</p>
+              <p class="header-tagline">Search meals by ingredient name.</p>
               <p>You can also start by browsing the categories below.</p>
             </div>
             <div class="header-svg">
@@ -182,6 +182,7 @@
                   id="text-search"
                   name="meal"
                   placeholder="e.g. chicken"
+                  required
                 />
                 <button
                   type="button"
@@ -209,7 +210,10 @@
               <button type="submit" class="primary-button">Search</button>
             </div>
             <div class="radio-container">
-              <p>Are you feeling lucky?</p>
+              <p>
+                Are you feeling lucky? Get a random meal with your inputted
+                ingredient.
+              </p>
               <div class="radio-buttons">
                 <input type="radio" id="lucky-yes" name="lucky" value="Yes" />
                 <label for="lucky-yes">Yes</label>
