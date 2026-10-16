@@ -1,14 +1,16 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <meta charset="UTF-8" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Patrick+Hand&family=Quicksand:wght@300..700&display=swap"
       rel="stylesheet"
     />
-    <title>My Fridge – saucepal</title>
-    <link rel="icon" type="image/x-icon" href="images/saucepal-favicon.png" />
+    <title>My Fridge – Saucepal</title>
+    <link rel="icon" type="image/svg+xml" href="images/saucepal-favicon.svg" />
+    <link rel="icon" type="image/png" href="images/saucepal-favicon.png" />
     <script src="shared.js"></script>
     <link rel="stylesheet" href="styles.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -28,7 +30,7 @@
           <img
             class="logo logo-dark"
             src="images/saucepal-logo-dark.svg"
-            alt="Saucepal"
+            alt="Saucepal home"
           />
         </a>
         <div class="right-menu">
@@ -175,7 +177,13 @@
               <img src="images/fridge.svg" alt="" />
             </div>
           </div>
-          <form id="add-form" class="quick-add" novalidate>
+          <h2 id="add-heading" class="visually-hidden">Add an ingredient</h2>
+          <form
+            id="add-form"
+            class="quick-add"
+            aria-labelledby="add-heading"
+            novalidate
+          >
             <div class="field">
               <label for="ingredient">
                 Ingredient name <span class="required"><i>(Required)</i></span>
@@ -223,7 +231,6 @@
                 <option value="Frozen">Frozen</option>
                 <option value="Other">Other</option>
               </select>
-              <div class="form-error"></div>
             </div>
 
             <div class="field">
@@ -281,9 +288,12 @@
       id="remove-all-dialog"
       class="dialog"
       aria-labelledby="remove-all-title"
+      aria-describedby="remove-all-desc"
     >
       <h2 id="remove-all-title">Remove everything?</h2>
-      <p>This will clear every item from your fridge. You can't undo this.</p>
+      <p id="remove-all-desc">
+        This will clear every item from your fridge. You can't undo this.
+      </p>
       <div class="dialog-actions">
         <button type="button" class="secondary-button" id="cancel-remove-all">
           Cancel

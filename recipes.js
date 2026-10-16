@@ -27,12 +27,13 @@ function renderRecipeList(data, term) {
 
   if (data.meals === null || data.meals.length === 0) {
     showNoResultsFound();
+    $("#search-status").text("No recipes found for " + term);
     return;
   }
   resetEmptyState();
   var items = [];
   $.each(data.meals, function (key, val) {
-    const { strMeal, strMealThumb, idMeal, strArea } = val;
+    const { strMeal, strMealThumb, idMeal } = val;
     console.log(val);
 
     items.push(
@@ -58,24 +59,40 @@ function renderRecipeList(data, term) {
     html: items.join(""),
   }).appendTo(".category-wrapper");
 
-  $("#text-search").val(ingredient);
+  // announce the result to screen readers
+  const count = data.meals.length;
+  $("#search-status").text(
+    count + (count === 1 ? " recipe" : " recipes") + " found for " + term,
+  );
 }
 
 function searchByIngredientName(ingredient) {
   // https://api.jquery.com/jQuery.getJSON/
   $.getJSON(
-    `https://www.themealdb.com/api/json/v2/65232507/filter.php?i=${ingredient}`,
+    `https://www.themealdb.com/api/json/v2/65232507/filter.php?i=${encodeURIComponent(ingredient)}`,
     function (data) {
       console.log(data);
       renderRecipeList(data, ingredient);
+      $("#text-search").val(ingredient);
+    },
+  );
+}
+
+function getRandomMealByIngredient(ingredient) {
+  $.getJSON(
+    `https://www.themealdb.com/api/json/v2/65232507/filter.php?i=${encodeURIComponent(ingredient)}`,
+    function (data) {
+      const resultCount = data.meals.length;
+      const rand = Math.floor(Math.random() * resultCount);
+      const meal = data.meals[rand];
+      window.location.href = "meal.html?id=" + meal.idMeal;
     },
   );
 }
 
 function searchByCategory(category) {
-  // https://api.jquery.com/jQuery.getJSON/
   $.getJSON(
-    `https://www.themealdb.com/api/json/v2/65232507/filter.php?c=${category}`,
+    `https://www.themealdb.com/api/json/v2/65232507/filter.php?c=${encodeURIComponent(category)}`,
     function (data) {
       console.log(data);
       renderRecipeList(data, category);
@@ -88,8 +105,7 @@ function searchByCategory(category) {
 $(document).ready(function () {
   const url = window.location.search;
   const params = new URLSearchParams(url);
-  let ingredient = params.get("ingredient");
-  if (ingredient) {
+  if (params.get("ingredient") || params.get("category")) {
     return;
   }
 
@@ -105,7 +121,7 @@ $(document).ready(function () {
 
         items.push(
           `
-  <a href="recipes.html?category=${strCategory}">
+  <a href="recipes.html?category=${encodeURIComponent(strCategory)}">
     <div class="category-card">
       <div class="category-image">
         <img src="${strCategoryThumb}" alt="" />
@@ -157,6 +173,11 @@ $(document).ready(function () {
     event.preventDefault();
     let formData = new FormData(form);
     let meal = formData.get("meal");
+    let lucky = formData.get("lucky");
+    if (lucky === "Yes") {
+      getRandomMealByIngredient(meal);
+      return;
+    }
     console.log("searching for", meal);
     if (meal.trim() === "") return;
     searchByIngredientName(meal);

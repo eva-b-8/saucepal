@@ -145,6 +145,12 @@ textarea {
   margin: 0 auto;
 }
 
+.about-miniatures {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
 .about-miniature {
   padding: 12px;
   background-color: var(--page-bg);
@@ -197,9 +203,8 @@ p {
 form {
   background-color: var(--surface);
   width: 100%;
-  border-radius: 0;
-  padding: 60px;
   height: fit-content;
+  border-radius: 20px;
 }
 
 form input {
@@ -289,6 +294,7 @@ a:hover {
 
 .error-button:focus-visible {
   outline: 3px solid var(--field-border-focus);
+  outline-offset: 2px;
 }
 
 .primary-button {
@@ -659,6 +665,12 @@ span.required {
   color: var(--white);
 }
 
+.page-header-dark .breadcrumb a:focus-visible {
+  outline: 3px solid var(--primary-lighter-color);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
 /* ---------- Breakpoints: headings, hero, forms, illustration ---------- */
 @media (min-width: 25em) {
   .hero-content {
@@ -734,7 +746,7 @@ li.menu-link {
 
 .quick-add {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   column-gap: 12px;
   align-items: start;
   padding: 24px;
@@ -1229,12 +1241,6 @@ textarea:focus,
   margin: 0;
 }
 
-@media (min-width: 40em) {
-  form {
-    border-radius: 20px 0 0 20px;
-  }
-}
-
 .dialog {
   margin: auto;
   max-width: 420px;
@@ -1509,4 +1515,38 @@ textarea:focus,
 
 .item-expiry {
   font-size: 0.875rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#text-search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+#text-search:placeholder-shown + #clear-search {
+  display: none;
+}
+
+.radio-buttons {
+  display: inline-flex;
+  grid-gap: 0 8px;
+}
+
+.radio-buttons label {
+  margin-right: 12px;
+}
+
+.radio-container {
+  padding: 0 24px 24px 24px;
 }
