@@ -1,3 +1,60 @@
+function downloadPDF() {
+  const mealNameEl = document.querySelector(".meal-name-handwritten");
+  const mealBodyEl = document.querySelector("#meal-body");
+
+  const nameClone = mealNameEl.cloneNode(true);
+  const bodyClone = mealBodyEl.cloneNode(true);
+
+  // No images or scripts in the PDF
+  [nameClone, bodyClone].forEach((el) =>
+    el.querySelectorAll("img, picture, script").forEach((n) => n.remove()),
+  );
+
+  // Copy the page's stylesheets so the PDF is styled
+  const styles = [...document.querySelectorAll('link[rel="stylesheet"], style')]
+    .map((el) => el.outerHTML)
+    .join("\n");
+
+  const html = `<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base href="${location.origin}/">
+  ${styles}
+</head>
+<body>
+  ${nameClone.outerHTML}
+  ${bodyClone.outerHTML}
+</body>
+</html>`;
+
+  const mealName = mealNameEl.textContent.trim();
+  const filename =
+    (mealName || document.title).replace(/[\\/:*?"<>|]/g, "") + ".pdf";
+
+  $.ajax({
+    url: "https://api.eu.apyhub.com/dosvak/html-to-pdf-render",
+    method: "POST",
+    contentType: "application/json",
+    headers: {
+      "apy-token":
+        "0dcb55caab4edd81e833ba0df5863c1b7b626b35768c5e6f89494f1fd04e9fbc",
+    },
+    data: JSON.stringify({ html }),
+    xhrFields: { responseType: "blob" },
+  })
+    .done(function (blob) {
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = filename;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+    })
+    .fail(function (xhr, status, err) {
+      console.error("PDF request failed:", xhr.status, status, err);
+    });
+}
+
 function mapIngredients(meal) {
   const items = [];
 
@@ -71,6 +128,7 @@ $(document).ready(function () {
             </div>
             <div class="recipe-header-content">
               <h1 class="meal-name-handwritten">${strMeal}</h1>
+              <button onclick="downloadPDF()" class="primary-button">Download as PDF</button>
               ${videoHtml}
             </div>
           </div>
@@ -88,6 +146,7 @@ $(document).ready(function () {
             <p class="recipe">${strInstructions}</p>
           </section>
         `);
+        document.title = `${strMeal} - Saucepal`;
       });
     },
   );
