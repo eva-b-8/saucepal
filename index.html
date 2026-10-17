@@ -9,7 +9,7 @@
       rel="stylesheet"
     />
 
-    <title>saucepal</title>
+    <title>Saucepal - Home</title>
     <link rel="icon" type="image/svg+xml" href="images/saucepal-favicon.svg" />
     <link rel="icon" type="image/png" href="images/saucepal-favicon.png" />
     <script src="shared.js"></script>
@@ -31,7 +31,7 @@
           <img
             class="logo logo-dark"
             src="images/saucepal-logo-dark.svg"
-            alt="Saucepal"
+            alt="Saucepal home"
           />
         </a>
         <div class="right-menu">
@@ -150,35 +150,128 @@
       </div>
     </header>
 
-    <!-- HERO BANNER -->
-    <!--Image source: https://www.pexels.com/photo/assorted-fruits-and-vegetables-on-a-marble-top-8939514/-->
-    <section class="hero-banner">
-      <div class="hero-content">
-        <h1>
-          Making meals <span class="handwritten">easier</span>, <br />
-          one ingredient at a time
-        </h1>
-        <p class="description">
-          Tell us what you have in your fridge and we will offer you recipes
-          based on what you already have. Alternatively, browse our recipes for
-          inspiration.
-        </p>
-        <div class="button-container">
-          <a class="primary-button" href="fridge.html">Add your ingredients</a>
-          <a class="secondary-button" href="recipes.html">Browse recipes</a>
+    <main id="main">
+      <!-- HERO BANNER -->
+      <!--Image source: https://www.pexels.com/photo/assorted-fruits-and-vegetables-on-a-marble-top-8939514/-->
+      <section class="hero-banner">
+        <div class="hero-content">
+          <h1>
+            Making meals <span class="handwritten">easier</span>, <br />
+            one ingredient at a time
+          </h1>
+          <p class="description">
+            Tell us what you have in your fridge and we will offer you recipes
+            based on what you already have. Alternatively, browse our recipes
+            for inspiration.
+          </p>
+          <div class="button-container">
+            <a class="primary-button" href="fridge.html"
+              >Add your ingredients</a
+            >
+            <a class="secondary-button" href="recipes.html">Browse recipes</a>
+          </div>
+        </div>
+      </section>
+      <div class="page-wrapper">
+        <!-- First section -->
+        <div class="main-page-container">
+          <div class="main-page-image">
+            <img
+              src="images/fridge-main.jpg"
+              alt="Person looking inside the fridge"
+            />
+          </div>
+          <div class="main-page-description">
+            <h2 class="page-description-header">
+              My <span class="handwritten">Fridge</span>
+            </h2>
+            <p>
+              This page allows you to add an ingredient name, quantity in 3
+              different units: kilograms, grams and numbers of units, choose its
+              category between Fruit & veg, Meat & fish, Dairy & eggs, Store
+              cupboard, Frozen, and Other, as well as expiry date (latest
+              today).
+            </p>
+            <p>
+              After adding an ingredient, it is displayed in its chosen
+              category. No category selected displays as Other. The page
+              displays how many ingredients have been added. After refreshing
+              the page, the ingredients are saved in local storage so they are
+              still there after the page is refreshed.
+            </p>
+            <p>
+              You can add and remove as many ingredients as you'd like. You also
+              have the option of removing all ingredients from the page at once.
+            </p>
+            <p>
+              Lastly, you are able to search for recipes using that specific
+              ingredient by clicking on "Search recipes".
+            </p>
+            <a class="secondary-button" href="fridge.html">Go to fridge</a>
+          </div>
+        </div>
+
+        <!-- Second section -->
+        <div class="main-page-container reverse">
+          <div class="main-page-image">
+            <img src="images/recipes.jpg" alt="Two people in the kitchen" />
+          </div>
+          <div class="main-page-description">
+            <h2 class="page-description-header">Recipes</h2>
+            <p>
+              This page makes it possible to perform various functions. If
+              navigated from the CTA in the header, it takes you to the main
+              Recipes page with the search empty and all categories displayed.
+              Once a category is selected, a list of meals within that category
+              appear.
+            </p>
+            <p>
+              If navigated through the My Fridge page with a specific
+              ingredient, it will only show recipes with the specific
+              ingredient. You are able to clear search to keep searching for new
+              ingredients.
+            </p>
+            <p>
+              Once a specific meal is clicked, it will take you to a meal page,
+              where you can find the meal's name, photo, recipe video (if it
+              exists), list of ingredients and the recipe information. You can
+              also save the recipe as PDF.
+            </p>
+            <p>
+              The "Are you feeling lucky?" addition allows you to search for an
+              ingredient and navigate to a random recipe containing this
+              ingredient.
+            </p>
+            <a class="secondary-button" href="recipes.html">Go to recipes</a>
+          </div>
+        </div>
+        <!-- Third section -->
+        <div class="main-page-container">
+          <div class="main-page-image">
+            <img
+              src="images/about.jpg"
+              alt="Indian curry served in bronze pan with decorations"
+            />
+          </div>
+          <div class="main-page-description">
+            <h2 class="page-description-header">
+              About <span class="handwritten">Saucepal</span>
+            </h2>
+            <p>
+              On this page you can find out various information about this web
+              app.
+            </p>
+            <p>
+              It explains which APIs were used, where the colour palettes,
+              photos, and illustrations come from, as well as tools used in the
+              creation on this project.
+            </p>
+            <a class="secondary-button" href="about.html">Go to about page</a>
+          </div>
         </div>
       </div>
-    </section>
-    <div class="page-wrapper">
-      <div class="main-page-container">
-        <div class="main-page-image"></div>
-        <div class="main-page-description">
-          <h2>Fridge</h2>
-          <p>Add things to your fridge.</p>
-          <a class="primary-button" href="fridge.html">Go to fridge</a>
-        </div>
-      </div>
-    </div>
+    </main>
+
     <footer class="site-footer">
       <div class="page-wrapper footer-content">
         <div>

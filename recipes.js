@@ -174,12 +174,13 @@ $(document).ready(function () {
     let formData = new FormData(form);
     let meal = formData.get("meal");
     let lucky = formData.get("lucky");
+    if (meal.trim() === "") return;
     if (lucky === "Yes") {
       getRandomMealByIngredient(meal);
       return;
     }
     console.log("searching for", meal);
-    if (meal.trim() === "") return;
+
     searchByIngredientName(meal);
   });
 });

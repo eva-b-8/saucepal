@@ -15,7 +15,6 @@ function downloadPDF() {
 <head>
   <meta charset="utf-8">
   <base href="${location.origin}/">
-  ${styles}
 </head>
 <body>
   ${nameClone.outerHTML}
@@ -83,14 +82,7 @@ $(document).ready(function () {
       console.log(data);
 
       $.each(data.meals, function (key, val) {
-        const {
-          strMeal,
-          strMealThumb,
-          idMeal,
-          strArea,
-          strInstructions,
-          strYoutube,
-        } = val;
+        const { strMeal, strMealThumb, strInstructions, strYoutube } = val;
         console.log(val);
         $("#meal-name").text(strMeal);
 

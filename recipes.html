@@ -155,13 +155,15 @@
           <nav aria-label="Breadcrumb" class="breadcrumb">
             <ol>
               <li><a href="index.html">Home</a></li>
-              <li><a href="fridge.html">My Fridge</a></li>
               <li><span aria-current="page">Recipes</span></li>
             </ol>
           </nav>
           <div class="form-intro-container">
             <div class="form-intro">
-              <h1>Try something <span class="handwritten">delicious</span>!</h1>
+              <h1>
+                Recipes: Try something
+                <span class="handwritten">delicious</span>!
+              </h1>
               <br />
               <p class="header-tagline">Search meals by ingredient name.</p>
               <p>You can also start by browsing the categories below.</p>
@@ -209,11 +211,11 @@
               </div>
               <button type="submit" class="primary-button">Search</button>
             </div>
-            <div class="radio-container">
-              <p>
+            <fieldset class="radio-container">
+              <legend>
                 Are you feeling lucky? Get a random meal with your inputted
                 ingredient.
-              </p>
+              </legend>
               <div class="radio-buttons">
                 <input type="radio" id="lucky-yes" name="lucky" value="Yes" />
                 <label for="lucky-yes">Yes</label>
@@ -226,7 +228,7 @@
                 />
                 <label for="lucky-no">No</label>
               </div>
-            </div>
+            </fieldset>
           </form>
         </div>
       </div>

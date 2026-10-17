@@ -9,7 +9,7 @@
 :root {
   --page-background-color: #fef6ee;
   --white: #ffffff;
-  --primary-color: #c63e19;
+  --primary-color: #c33d18;
   --primary-darker-color: #762918;
   --primary-lighter-color: #f9d1af;
   --primary-lightest-color: #fcead8;
@@ -670,23 +670,6 @@ span.required {
   border-radius: 2px;
 }
 
-/* ---------- Breakpoints: headings, hero, forms, illustration ---------- */
-@media (min-width: 25em) {
-  .hero-content {
-    padding-top: 0;
-  }
-
-  form {
-    border-radius: 20px;
-  }
-}
-
-@media (min-width: 73em) {
-  .header-svg {
-    display: block;
-  }
-}
-
 /* ---------- Menu links ---------- */
 li.menu-link {
   padding: 0;
@@ -795,53 +778,6 @@ li.menu-link {
   padding: 12px 0;
   border-bottom: 1px solid var(--border);
   list-style: none;
-}
-
-@media (min-width: 40em) {
-  .shelf li {
-    grid-template-columns: 1fr auto;
-    gap: 18px;
-  }
-}
-
-@media (min-width: 40em) {
-  h1 {
-    font-size: 3.5rem;
-  }
-
-  .hero-banner {
-    background-position: center;
-    background-color: transparent;
-    background-blend-mode: normal;
-    min-height: 700px;
-    padding: 100px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .toast {
-    transition: opacity 0.3s ease;
-    transform: translate(-50%, 0);
-  }
-
-  .category-card:hover img,
-  .category-list a:focus-visible img,
-  .meal:hover img {
-    transform: none;
-  }
-
-  .category-card img,
-  .meal img {
-    transition: none;
-  }
-  .toast {
-    transition: opacity 0.3s ease;
-    transform: translate(-50%, 0);
-  }
 }
 
 .fridge-page .page-wrapper {
@@ -1175,16 +1111,6 @@ textarea:focus,
   display: block;
 }
 
-@media (min-width: 50em) {
-  .recipe-header {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .meal-main-photo {
-    aspect-ratio: auto;
-  }
-}
-
 .recipe {
   white-space: pre-line;
 }
@@ -1207,7 +1133,6 @@ textarea:focus,
 .site-footer {
   background-color: var(--surface);
   color: var(--text);
-  margin-top: 60px;
 }
 
 .footer-content {
@@ -1361,6 +1286,30 @@ textarea:focus,
 }
 
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .toast {
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, 0);
+  }
+
+  .category-card:hover img,
+  .category-list a:focus-visible img,
+  .meal:hover img {
+    transform: none;
+  }
+
+  .category-card img,
+  .meal img {
+    transition: none;
+  }
+  .toast {
+    transition: opacity 0.3s ease;
+    transform: translate(-50%, 0);
+  }
+
   .theme-toggle.is-ready::before,
   .theme-toggle.is-ready .toggle-icon {
     transition: none;
@@ -1379,20 +1328,6 @@ textarea:focus,
     background-image: url("images/hero-banner-dark.jpg");
     background-color: rgb(28 18 16 / 0.6);
     background-blend-mode: darken;
-  }
-}
-
-@media (min-width: 28em) {
-  :root[data-theme="dark"] .hero-banner {
-    background-color: transparent;
-    background-blend-mode: normal;
-  }
-}
-
-@media (min-width: 28em) and (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .hero-banner {
-    background-color: transparent;
-    background-blend-mode: normal;
   }
 }
 
@@ -1454,6 +1389,150 @@ textarea:focus,
   display: block;
 }
 
+.item-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.item-expiry {
+  font-size: 0.875rem;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+#text-search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  display: none;
+}
+
+#text-search:placeholder-shown + #clear-search {
+  display: none;
+}
+
+.radio-buttons {
+  display: inline-flex;
+  grid-gap: 0 8px;
+}
+
+.radio-buttons label {
+  margin-right: 12px;
+}
+
+.radio-container {
+  padding: 0 24px 24px 24px;
+}
+
+.main-page-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: 1rem;
+}
+
+.main-page-image {
+  position: relative;
+  min-height: 15rem;
+}
+
+.main-page-image img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
+}
+
+.main-page-description {
+  padding: 32px;
+  border-radius: 20px;
+  background-color: var(--surface);
+}
+
+.page-description-header {
+  font-size: 2rem;
+  margin-bottom: 16px;
+}
+
+.main-page-description .secondary-button {
+  margin-top: 16px;
+}
+
+.main-page-container.reverse {
+  direction: rtl;
+}
+
+.main-page-container.reverse > * {
+  direction: ltr;
+}
+
+.main-page-container + .main-page-container {
+  margin-top: 2rem;
+}
+
+fieldset {
+  border: none;
+}
+
+legend {
+  margin-bottom: 16px;
+}
+
+/* ---------- Media queries ---------- */
+
+@media (min-width: 25em) {
+  .hero-content {
+    padding-top: 0;
+  }
+
+  form {
+    border-radius: 20px;
+  }
+}
+
+@media (min-width: 28em) {
+  :root[data-theme="dark"] .hero-banner {
+    background-color: transparent;
+    background-blend-mode: normal;
+  }
+}
+
+@media (min-width: 28em) and (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .hero-banner {
+    background-color: transparent;
+    background-blend-mode: normal;
+  }
+}
+
+@media (min-width: 40em) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  .hero-banner {
+    background-position: center;
+    background-color: transparent;
+    background-blend-mode: normal;
+    min-height: 700px;
+    padding: 100px;
+  }
+
+  .shelf li {
+    grid-template-columns: 1fr auto;
+    gap: 18px;
+  }
+}
+
 /* ---------- Desktop menu ---------- */
 @media (min-width: 46em) {
   .menu-container {
@@ -1506,46 +1585,18 @@ textarea:focus,
   }
 }
 
-.item-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+@media (min-width: 50em) {
+  .recipe-header {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .meal-main-photo {
+    aspect-ratio: auto;
+  }
 }
 
-.item-expiry {
-  font-size: 0.875rem;
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-
-#text-search::-webkit-search-cancel-button {
-  -webkit-appearance: none;
-  display: none;
-}
-
-#text-search:placeholder-shown + #clear-search {
-  display: none;
-}
-
-.radio-buttons {
-  display: inline-flex;
-  grid-gap: 0 8px;
-}
-
-.radio-buttons label {
-  margin-right: 12px;
-}
-
-.radio-container {
-  padding: 0 24px 24px 24px;
+@media (min-width: 73em) {
+  .header-svg {
+    display: block;
+  }
 }
