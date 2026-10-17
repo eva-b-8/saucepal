@@ -18,7 +18,7 @@
   --off-black: #3f120b;
   --light-gray: #dbdbdb;
   --field-bg: #fff;
-  --field-border: var(--light-gray);
+  --field-border: #949494;
   --field-border-focus: #2b6cb0;
   --field-text: #1a1a1a;
   --label-text: var(--off-black);
@@ -61,7 +61,7 @@
     --border: #4a3a35;
     --error: #ff8a80;
     --field-bg: #1f1512;
-    --field-border: #5a4741;
+    --field-border: #7f5c5c;
     --field-border-focus: #7fb0e8;
     --field-text: #f4e9e4;
     --label-text: #e3d6d1;
@@ -227,6 +227,7 @@ form input {
   color: var(--error);
   display: none;
   font-size: 0.875rem;
+  margin-top: 0.35rem;
 }
 
 .page-header-dark {
@@ -873,6 +874,7 @@ li.menu-link {
 
 .quantity-field {
   display: flex;
+  background: var(--field-bg);
   border: 1px solid var(--field-border);
   border-radius: var(--radius-sm);
   overflow: hidden;
@@ -928,6 +930,11 @@ textarea:focus,
 .field > select,
 .quantity-field {
   height: 3.125rem;
+}
+
+.field > input,
+.field > select {
+  margin-bottom: 0;
 }
 
 .quantity-field input[type="number"],
@@ -1180,6 +1187,16 @@ textarea:focus,
 
 :root[data-theme="dark"] .logo-dark {
   display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .logo-light {
+    display: none;
+  }
+
+  :root:not([data-theme="light"]) .logo-dark {
+    display: block;
+  }
 }
 
 /* ---------- Theme toggle ---------- */
