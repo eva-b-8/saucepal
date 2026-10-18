@@ -26,6 +26,7 @@ function formatAmount(item) {
 
 function formatExpiry(value) {
   // build the date from its parts so it isn't shifted by time zones
+  // https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
   const [year, month, day] = value.split("-").map(Number);
   return new Date(year, month - 1, day).toLocaleDateString("en-GB", {
     day: "numeric",
@@ -34,6 +35,7 @@ function formatExpiry(value) {
   });
 }
 
+// https://stackoverflow.com/questions/1026069/how-do-i-make-the-first-letter-of-a-string-uppercase-in-javascript
 function capitalise(text) {
   let trimmed = text.trim();
   return trimmed.charAt(0).toUpperCase() + trimmed.slice(1).toLowerCase();
@@ -61,6 +63,10 @@ let toastTimer;
 // stop past dates being chosen in the expiry picker
 const expiryField = document.getElementById("expiry");
 
+// https://www.w3schools.com/Jsref/jsref_string_padstart.asp
+// https://www.w3schools.com/JSREF/jsref_getfullyear.asp
+// https://www.w3schools.com/jsref/jsref_getmonth.asp
+// https://www.w3schools.com/jsref/jsref_getdate.asp
 function todayAsInputValue() {
   const now = new Date();
   const year = now.getFullYear();
@@ -71,6 +77,7 @@ function todayAsInputValue() {
 
 expiryField.min = todayAsInputValue();
 
+// https://www.w3schools.com/jsref/met_win_cleartimeout.asp
 function showToast(message) {
   let toast = document.getElementById("toast");
   toast.textContent = "";
@@ -169,6 +176,7 @@ form.addEventListener("submit", (event) => {
     return;
   }
 
+  // https://www.w3schools.com/js/js_json_stringify.asp
   let fridge = JSON.parse(localStorage.getItem("fridge")) || [];
   fridge.push({ ingredient, quantity, unit, category, expiry });
   localStorage.setItem("fridge", JSON.stringify(fridge));
@@ -310,6 +318,7 @@ $("#confirm-remove-all").on("click", function () {
 
 showFridge();
 
+// https://www.w3schools.com/jsref/jsref_tolocaledatestring.asp
 document.addEventListener("DOMContentLoaded", () => {
   const dayElement = document.getElementById("day-of-week");
   if (dayElement) {

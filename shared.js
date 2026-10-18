@@ -7,7 +7,7 @@
 })();
 
 document.addEventListener("DOMContentLoaded", () => {
-  // ---------- mobile menu ----------
+  // mobile menu
   const menuToggle = document.getElementById("menu-toggle");
   const menuLinks = document.getElementById("menu-links");
 
@@ -34,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ---------- theme toggle ----------
+  // theme toggle
   const themeToggle = document.getElementById("theme-toggle");
   if (!themeToggle) return;
 

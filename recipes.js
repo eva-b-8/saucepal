@@ -1,4 +1,4 @@
-// handles search via ingredient query param
+// handles search via ingredient query param - ingredient
 
 $(document).ready(function () {
   const url = window.location.search;
@@ -10,7 +10,7 @@ $(document).ready(function () {
   searchByIngredientName(ingredient);
 });
 
-// handles search via category query param
+// handles search via category query param - category
 
 $(document).ready(function () {
   const url = window.location.search;
@@ -148,6 +148,8 @@ $(document).ready(function () {
 });
 
 // function to show empty state
+
+// https://www.w3schools.com/jquery/html_removeattr.asp
 
 function showNoResultsFound() {
   $(".empty-state").removeAttr("hidden");

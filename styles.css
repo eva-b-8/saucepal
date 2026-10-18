@@ -652,7 +652,7 @@ span.required {
   border-radius: 2px;
 }
 
-/* ---------- Menu links ---------- */
+/* Menu links */
 li.menu-link {
   padding: 0;
 }
@@ -1176,7 +1176,7 @@ textarea:focus,
   font-size: 1rem;
 }
 
-/* ---------- Logo swap for dark mode ---------- */
+/* Logo swap for dark mode */
 .logo-dark {
   display: none;
 }
@@ -1199,7 +1199,7 @@ textarea:focus,
   }
 }
 
-/* ---------- Theme toggle ---------- */
+/* Theme toggle */
 .theme-toggle {
   position: relative;
   align-self: center;
@@ -1300,7 +1300,7 @@ textarea:focus,
   }
 }
 
-/* ---------- Dark hero ---------- */
+/* Dark hero */
 :root[data-theme="dark"] .hero-banner {
   background-image: url("images/hero-banner-dark.jpg");
   background-color: rgb(28 18 16 / 0.6);
@@ -1326,7 +1326,7 @@ textarea:focus,
   padding-left: 1.25rem;
 }
 
-/* ---------- Mobile menu ---------- */
+/* Mobile menu */
 .right-menu {
   display: contents;
 }
@@ -1472,7 +1472,7 @@ legend {
   margin-bottom: var(--space-md);
 }
 
-/* ---------- Media queries ---------- */
+/* Media queries for desktop */
 
 @media (min-width: 25em) {
   .hero-content {
@@ -1517,7 +1517,7 @@ legend {
   }
 }
 
-/* ---------- Desktop menu ---------- */
+/* Desktop menu  */
 @media (min-width: 46em) {
   .menu-container {
     flex-wrap: nowrap;
